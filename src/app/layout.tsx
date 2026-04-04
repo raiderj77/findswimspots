@@ -10,6 +10,7 @@ export function generateMetadata(): Metadata {
     description: 'Find the best swimming holes, natural pools, and water spots across the US. Free directory of tested swim spots with safety ratings and local tips.',
     keywords: 'swimming holes, natural pools, water spots, swim locations, creeks, natural swimming, wild swimming, US swimming holes',
     alternates: { canonical: 'https://findswimspots.com' },
+    verification: { google: 'mYJQ1s35nwTJyI3LV6j-FwtgbKUNIIUg1t6xndmetPU' },
     openGraph: {
       type: 'website',
       url: 'https://findswimspots.com',
