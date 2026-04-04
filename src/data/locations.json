@@ -1,0 +1,112 @@
+[
+  {
+    "name": "Hamilton Pool Preserve",
+    "slug": "hamilton-pool-preserve",
+    "state": "Texas",
+    "stateSlug": "texas",
+    "city": "Dripping Springs",
+    "lat": 30.2885,
+    "lng": -98.2694,
+    "description": "Natural swimming hole with 45-foot waterfall and spring-fed pool. Crystal clear water and excellent for swimming.",
+    "amenities": ["Natural rock pool", "Waterfall", "Hiking trail access", "Parking available", "Restrooms nearby", "Sandy beach"]
+  },
+  {
+    "name": "Ice Lake",
+    "slug": "ice-lake",
+    "state": "California",
+    "stateSlug": "california",
+    "city": "Sequoia National Park",
+    "lat": 36.5487,
+    "lng": -118.7246,
+    "description": "High alpine lake with cold, crystal clear water. Popular with swimmers seeking pristine mountain swimming.",
+    "amenities": ["Natural rock pool", "Hiking trail access", "Shallow entry", "Parking available"]
+  },
+  {
+    "name": "Laurel Falls Swimming Hole",
+    "slug": "laurel-falls-swimming-hole",
+    "state": "Tennessee",
+    "stateSlug": "tennessee",
+    "city": "Gatlinburg",
+    "lat": 35.7097,
+    "lng": -83.5268,
+    "description": "Beautiful waterfall swimming hole in Great Smoky Mountains with rope swing and clear water.",
+    "amenities": ["Waterfall", "Rope swing", "Hiking trail access", "Shallow entry", "Natural rock pool"]
+  },
+  {
+    "name": "Elk Knob Swimming Hole",
+    "slug": "elk-knob-swimming-hole",
+    "state": "North Carolina",
+    "stateSlug": "north-carolina",
+    "city": "Banner Elk",
+    "lat": 35.9525,
+    "lng": -81.8097,
+    "description": "Mountain stream swimming hole with clear cold water and excellent hiking access.",
+    "amenities": ["Natural rock pool", "Hiking trail access", "Shallow entry", "Parking available"]
+  },
+  {
+    "name": "Devils Eyebrow",
+    "slug": "devils-eyebrow",
+    "state": "Arkansas",
+    "stateSlug": "arkansas",
+    "city": "Ozark",
+    "lat": 35.5067,
+    "lng": -93.4167,
+    "description": "Ozark Mountain swimming hole with scenic bluff views and natural spring water.",
+    "amenities": ["Natural rock pool", "Hiking trail access", "Parking available", "Scenic overlook"]
+  },
+  {
+    "name": "Clear Creek Falls",
+    "slug": "clear-creek-falls",
+    "state": "Oregon",
+    "stateSlug": "oregon",
+    "city": "Mount Hood",
+    "lat": 45.2706,
+    "lng": -121.5197,
+    "description": "Scenic waterfall and plunge pool in the Oregon Cascades. Cold mountain water and pristine setting.",
+    "amenities": ["Waterfall", "Natural rock pool", "Hiking trail access", "Shallow entry"]
+  },
+  {
+    "name": "Emerald Lake",
+    "slug": "emerald-lake",
+    "state": "Colorado",
+    "stateSlug": "colorado",
+    "city": "Grand Lake",
+    "lat": 40.2939,
+    "lng": -105.8286,
+    "description": "High altitude lake with stunning mountain views and excellent water quality for summer swimming.",
+    "amenities": ["Natural rock pool", "Hiking trail access", "Parking available", "Shallow entry"]
+  },
+  {
+    "name": "Spy Rock Swimming Hole",
+    "slug": "spy-rock-swimming-hole",
+    "state": "Virginia",
+    "stateSlug": "virginia",
+    "city": "Hot Springs",
+    "lat": 37.8317,
+    "lng": -80.0403,
+    "description": "Mountain stream swimming hole in the Appalachians with excellent water quality.",
+    "amenities": ["Natural rock pool", "Hiking trail access", "Rope swing", "Shallow entry"]
+  },
+  {
+    "name": "Plunge Pool at Kaaterskill Falls",
+    "slug": "plunge-pool-kaaterskill-falls",
+    "state": "New York",
+    "stateSlug": "new-york",
+    "city": "Palenville",
+    "lat": 42.1958,
+    "lng": -74.1519,
+    "description": "Historic swimming hole beneath 260-foot waterfall in the Catskill Mountains.",
+    "amenities": ["Waterfall", "Natural rock pool", "Hiking trail access", "Shallow entry", "Rope swing"]
+  },
+  {
+    "name": "Barton Springs Pool",
+    "slug": "barton-springs-pool",
+    "state": "Texas",
+    "stateSlug": "texas",
+    "city": "Austin",
+    "lat": 30.2645,
+    "lng": -97.7648,
+    "description": "Spring-fed swimming hole in Zilker Park with consistent 68-degree water year-round.",
+    "amenities": ["Natural rock pool", "Shallow entry", "Parking available", "Restrooms nearby", "Lifeguard on duty (seasonal)"]
+  }
+]

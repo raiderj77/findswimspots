@@ -1,0 +1,13 @@
+# Find Swim Spots — Swimming Holes Directory
+
+> A free directory of swimming holes, natural pools, creeks, and water spots across the United States with safety info and local tips.
+
+## Browse
+- [Home](https://findswimspots.com): Search all swimming holes
+- [Texas](https://findswimspots.com/texas): Swimming holes in Texas
+- [California](https://findswimspots.com/california): Swimming holes in California
+
+## About
+- [About Us](https://findswimspots.com/about): About this directory
+- [Privacy Policy](https://findswimspots.com/privacy): How we handle data
+- [Contact](https://findswimspots.com/contact): Get in touch
