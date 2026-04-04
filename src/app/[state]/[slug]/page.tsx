@@ -8,8 +8,10 @@ function formatStateName(slug: string): string {
   return slug.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 }
 
-export function generateMetadata({ params }: { params: { state: string; slug: string } }): Metadata {
-  const location = locations.find((loc) => loc.stateSlug === params.state && loc.slug === params.slug);
+export function generateMetadata({ params }: { params: Promise<{ state: string; slug: string }> }): Metadata {
+  // Note: In generateMetadata, params are not yet awaited
+  const paramsSync = params as any;
+  const location = locations.find((loc) => loc.stateSlug === paramsSync.state && loc.slug === paramsSync.slug);
   if (!location) {
     return { title: 'Not Found' };
   }
@@ -26,9 +28,10 @@ export function generateStaticParams() {
   }));
 }
 
-export default function LocationPage({ params }: { params: { state: string; slug: string } }) {
-  const location = locations.find((loc) => loc.stateSlug === params.state && loc.slug === params.slug);
-  const stateName = formatStateName(params.state);
+export default async function LocationPage({ params }: { params: Promise<{ state: string; slug: string }> }) {
+  const { state, slug } = await params;
+  const location = locations.find((loc) => loc.stateSlug === state && loc.slug === slug);
+  const stateName = formatStateName(state);
 
   if (!location) {
     return (
@@ -56,13 +59,13 @@ export default function LocationPage({ params }: { params: { state: string; slug
         '@type': 'ListItem',
         position: 2,
         name: stateName,
-        item: `https://findswimspots.com/${params.state}`,
+        item: `https://findswimspots.com/${state}`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: location.name,
-        item: `https://findswimspots.com/${params.state}/${params.slug}`,
+        item: `https://findswimspots.com/${state}/${slug}`,
       },
     ],
   };
@@ -96,7 +99,7 @@ export default function LocationPage({ params }: { params: { state: string; slug
             Home
           </a>
           {' > '}
-          <a href={`/${params.state}`} style={{ color: '#0056b3', textDecoration: 'none' }}>
+          <a href={`/${state}`} style={{ color: '#0056b3', textDecoration: 'none' }}>
             {stateName}
           </a>
           {' > '}
@@ -208,7 +211,7 @@ export default function LocationPage({ params }: { params: { state: string; slug
         </div>
 
         <div style={{ marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid #ddd' }}>
-          <a href={`/${params.state}`} style={{ color: '#0056b3', textDecoration: 'none' }}>
+          <a href={`/${state}`} style={{ color: '#0056b3', textDecoration: 'none' }}>
             ← Back to {stateName}
           </a>
         </div>

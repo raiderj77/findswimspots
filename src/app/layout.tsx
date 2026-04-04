@@ -9,7 +9,9 @@ export function generateMetadata(): Metadata {
     },
     description: 'Find the best swimming holes, natural pools, and water spots across the US. Free directory of tested swim spots with safety ratings and local tips.',
     keywords: 'swimming holes, natural pools, water spots, swim locations, creeks, natural swimming, wild swimming, US swimming holes',
-    canonical: 'https://findswimspots.com',
+    alternates: {
+      canonical: 'https://findswimspots.com',
+    },
     openGraph: {
       type: 'website',
       url: 'https://findswimspots.com',
@@ -79,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
             <h1 style={{ margin: '0 0 1rem 0', fontSize: '1.5rem' }}>Find Swim Spots</h1>
             <nav>
-              <ul style={{ list: 'none', margin: 0, padding: 0, display: 'flex', gap: '2rem' }}>
+              <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', gap: '2rem' }}>
                 <li>
                   <a href="/" style={{ color: 'white', textDecoration: 'none' }}>
                     Home
@@ -140,7 +142,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div style={{ borderTop: '1px solid #ddd', paddingTop: '1rem', fontSize: '0.875rem', color: '#666' }}>
               <p>Find Swim Spots is a free directory of swimming holes and natural water spots across the United States. Always check local conditions and follow posted guidelines.</p>
               <nav style={{ marginTop: '1rem' }}>
-                <ul style={{ list: 'none', margin: 0, padding: 0, display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+                <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
                   <li>
                     <a href="/privacy" style={{ color: '#0056b3', textDecoration: 'none' }}>
                       Privacy

@@ -8,8 +8,9 @@ function formatStateName(slug: string): string {
   return slug.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 }
 
-export function generateMetadata({ params }: { params: { state: string } }): Metadata {
-  const stateName = formatStateName(params.state);
+export function generateMetadata({ params }: { params: Promise<{ state: string }> }): Metadata {
+  const paramsSync = params as any;
+  const stateName = formatStateName(paramsSync.state);
   return {
     title: `Swimming Holes in ${stateName}`,
     description: `Find swimming holes and natural water spots in ${stateName}. Browse tested locations with safety tips and local information.`,
@@ -22,9 +23,10 @@ export function generateStaticParams() {
   }));
 }
 
-export default function StatePage({ params }: { params: { state: string } }) {
-  const stateName = formatStateName(params.state);
-  const stateLocations = locations.filter((loc) => loc.stateSlug === params.state);
+export default async function StatePage({ params }: { params: Promise<{ state: string }> }) {
+  const { state } = await params;
+  const stateName = formatStateName(state);
+  const stateLocations = locations.filter((loc) => loc.stateSlug === state);
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -40,7 +42,7 @@ export default function StatePage({ params }: { params: { state: string } }) {
         '@type': 'ListItem',
         position: 2,
         name: stateName,
-        item: `https://findswimspots.com/${params.state}`,
+        item: `https://findswimspots.com/${state}`,
       },
     ],
   };
@@ -77,7 +79,7 @@ export default function StatePage({ params }: { params: { state: string } }) {
                 }}
               >
                 <h2 style={{ marginTop: 0, color: '#0056b3', fontSize: '1.25rem' }}>
-                  <a href={`/${params.state}/${location.slug}`} style={{ textDecoration: 'none', color: '#0056b3' }}>
+                  <a href={`/${state}/${location.slug}`} style={{ textDecoration: 'none', color: '#0056b3' }}>
                     {location.name}
                   </a>
                 </h2>
@@ -92,7 +94,7 @@ export default function StatePage({ params }: { params: { state: string } }) {
                   <strong>Coordinates:</strong> {location.lat.toFixed(4)}, {location.lng.toFixed(4)}
                 </p>
                 <a
-                  href={`/${params.state}/${location.slug}`}
+                  href={`/${state}/${location.slug}`}
                   style={{
                     display: 'inline-block',
                     marginTop: '1rem',

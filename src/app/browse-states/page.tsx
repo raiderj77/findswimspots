@@ -40,16 +40,6 @@ export default function BrowseStatesPage() {
               transition: 'all 0.2s ease',
               cursor: 'pointer',
             }}
-            onMouseEnter={(e) => {
-              const target = e.target as HTMLAnchorElement;
-              target.style.backgroundColor = '#004085';
-              target.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
-            }}
-            onMouseLeave={(e) => {
-              const target = e.target as HTMLAnchorElement;
-              target.style.backgroundColor = '#0056b3';
-              target.style.boxShadow = 'none';
-            }}
           >
             {state.name}
           </a>
