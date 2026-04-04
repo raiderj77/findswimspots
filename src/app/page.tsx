@@ -1,310 +1,187 @@
+/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
-import { STATES } from './states';
+import Link from 'next/link';
 import locations from '@/data/locations.json';
 
 export const dynamic = 'force-static';
 
-export function generateMetadata(): Metadata {
-  return {
-    title: 'Find Swimming Holes & Natural Water Spots Near You',
-    description: 'Find the best swimming holes, natural pools, and water spots across the US. Free directory of tested swim spots with safety ratings and local tips.',
-    openGraph: {
-      title: 'Find Swimming Holes & Natural Water Spots Near You',
-      description: 'Find the best swimming holes, natural pools, and water spots across the US.',
-      url: 'https://findswimspots.com',
-    },
-  };
-}
+export const metadata: Metadata = {
+  title: 'Find Swimming Holes & Natural Water Spots Near You',
+  description: 'Discover the best swimming holes, natural pools, and wild swim spots across the USA. Free directory with safety tips and local knowledge.',
+};
 
-const faqs = [
-  {
-    question: 'Is it safe to swim in natural water holes?',
-    answer: 'Natural water swimming carries inherent risks. Always check local conditions, water quality, weather, and follow posted warnings. Never swim alone, and be aware of currents, depth, and water temperature.',
-  },
-  {
-    question: 'What is the best time to visit swimming holes?',
-    answer: 'Summer months (June-August) are peak season, with warmer water temperatures. However, spring and early fall can offer pleasant swimming conditions with fewer crowds. Always check seasonal conditions before visiting.',
-  },
-  {
-    question: 'How is water quality monitored at these swim spots?',
-    answer: 'Water quality varies by location and season. We recommend checking with local environmental agencies and park services for current water quality reports before visiting any spot.',
-  },
-  {
-    question: 'Are pets allowed at swimming holes?',
-    answer: 'Policies vary by location. Some natural areas allow dogs, while others restrict them. Check local park regulations before bringing pets to any swim spot.',
-  },
-  {
-    question: 'Do I need a permit to swim at these locations?',
-    answer: 'Most public swimming holes do not require permits, but some protected areas may have restrictions. Always verify access rules and respect private property.',
-  },
+const ALL_STATES = [
+  'Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware',
+  'Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky',
+  'Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi',
+  'Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico',
+  'New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania',
+  'Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont',
+  'Virginia','Washington','West Virginia','Wisconsin','Wyoming',
 ];
 
+const IMG_KEYWORDS = ['swimming+hole','waterfall+pool','river+swimming','natural+pool','creek+swimming','lake+swimming'];
+
 export default function Home() {
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Find Swim Spots',
-    url: 'https://findswimspots.com',
-    description: 'A free directory of swimming holes and natural water spots across the United States',
-    image: 'https://findswimspots.com/og-image.jpg',
-  };
-
-  const websiteSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    url: 'https://findswimspots.com',
-    name: 'Find Swim Spots',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: 'https://findswimspots.com/search?q={search_term_string}',
-      },
-      query_input: 'required name=search_term_string',
-    },
-  };
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  };
+  const featured = locations.slice(0, 6);
+  const statesWithData = Array.from(new Set(locations.map((l) => l.state))).length;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-      />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context':'https://schema.org','@type':'WebSite',url:'https://findswimspots.com',
+        name:'Find Swim Spots',potentialAction:{'@type':'SearchAction',target:{'@type':'EntryPoint',urlTemplate:'https://findswimspots.com/search?q={search_term_string}'},'query-input':'required name=search_term_string'},
+      }) }} />
 
-      <article style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
-        {/* Hero Section */}
-        <section style={{ textAlign: 'center', marginBottom: '3rem', paddingTop: '2rem' }}>
-          <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#0056b3' }}>Find Swimming Holes Near You</h1>
-          <p style={{ fontSize: '1.1rem', color: '#666', marginBottom: '2rem', maxWidth: '600px', margin: '0 auto 2rem' }}>
-            Discover pristine natural water spots, mountain creeks, and scenic swimming holes across the United States. Find tested locations with safety tips and local knowledge.
+      {/* Hero */}
+      <section style={{ position: 'relative', background: 'linear-gradient(155deg, var(--forest) 0%, #0a2d1e 40%, #0b3d4f 100%)', overflow: 'hidden', padding: '7rem 1.5rem 8rem' }}>
+        <div aria-hidden style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(168,230,192,0.04) 1px, transparent 1px)', backgroundSize: '28px 28px', pointerEvents: 'none' }} />
+        <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <p className="anim-fade-up" style={{ display: 'inline-block', color: '#a8e6c0', fontWeight: 700, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '1rem', fontFamily: 'var(--font-display)', background: 'rgba(168,230,192,0.1)', padding: '0.4rem 1rem', borderRadius: '50px', border: '1px solid rgba(168,230,192,0.2)' }}>
+            🌿 Wild Swimming Directory
           </p>
-
-          {/* Search Bar */}
-          <form
-            style={{
-              display: 'flex',
-              gap: '0.5rem',
-              maxWidth: '500px',
-              margin: '0 auto 2rem',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-            }}
-            action="/search"
-            method="get"
-          >
-            <input
-              type="text"
-              name="q"
-              placeholder="Search by city or state..."
-              style={{
-                flex: '1',
-                minWidth: '200px',
-                padding: '0.75rem',
-                border: '1px solid #ddd',
-                borderRadius: '4px',
-                fontSize: '1rem',
-              }}
-            />
-            <button
-              type="submit"
-              style={{
-                padding: '0.75rem 1.5rem',
-                backgroundColor: '#0056b3',
-                color: 'white',
-                border: 'none',
-                borderRadius: '4px',
-                fontSize: '1rem',
-                cursor: 'pointer',
-              }}
-            >
-              Search
-            </button>
+          <h1 className="anim-fade-up anim-delay-1" style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 5vw, 3.4rem)', color: 'var(--white)', fontWeight: 800, marginBottom: '1.25rem', lineHeight: 1.15 }}>
+            Discover <span style={{ color: '#a8e6c0' }}>Hidden</span> Swimming Holes<br />Across America
+          </h1>
+          <p className="anim-fade-up anim-delay-2" style={{ fontSize: '1.05rem', color: '#7ab89a', marginBottom: '2.75rem', maxWidth: '500px', margin: '0 auto 2.75rem', fontFamily: 'var(--font-display)', lineHeight: 1.65 }}>
+            Natural pools, waterfalls, creek swims &amp; wild swimming spots — all free, all verified.
+          </p>
+          <form method="GET" action="/search" className="anim-fade-up anim-delay-3">
+            <div className="search-wrap">
+              <input type="text" name="q" placeholder="Search by state, city, or spot name…" className="search-input" />
+              <button type="submit" className="search-btn">Find Spots</button>
+            </div>
           </form>
-        </section>
+        </div>
+        <svg aria-hidden viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', display: 'block' }} preserveAspectRatio="none">
+          <path d="M0,40 C180,70 360,10 540,40 C720,70 900,10 1080,40 C1260,70 1380,30 1440,40 L1440,70 L0,70 Z" fill="var(--ivory)" />
+        </svg>
+      </section>
 
-        {/* Featured Listings */}
-        <section style={{ marginBottom: '3rem' }}>
-          <h2 style={{ fontSize: '1.75rem', marginBottom: '1.5rem', color: '#0056b3' }}>Featured Swimming Holes</h2>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-              gap: '1.5rem',
-              marginBottom: '2rem',
-            }}
-          >
-            {locations.slice(0, 6).map((location) => (
-              <div
-                key={location.slug}
-                style={{
-                  border: '1px solid #ddd',
-                  borderRadius: '8px',
-                  padding: '1.5rem',
-                  backgroundColor: '#f9f9f9',
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
-                }}
-              >
-                <h3 style={{ marginTop: 0, color: '#0056b3' }}>
-                  <a href={`/${location.stateSlug}/${location.slug}`} style={{ textDecoration: 'none', color: '#0056b3' }}>
-                    {location.name}
-                  </a>
-                </h3>
-                <p style={{ margin: '0.5rem 0', color: '#666' }}>
-                  <strong>{location.city}, {location.state}</strong>
-                </p>
-                <p style={{ margin: '1rem 0', lineHeight: 1.5 }}>{location.description}</p>
-                <p style={{ margin: '0.5rem 0', fontSize: '0.875rem', color: '#666' }}>
-                  <strong>Amenities:</strong> {location.amenities.slice(0, 3).join(', ')}
-                </p>
-                <a
-                  href={`/${location.stateSlug}/${location.slug}`}
-                  style={{
-                    display: 'inline-block',
-                    marginTop: '1rem',
-                    color: '#0056b3',
-                    textDecoration: 'none',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  Learn more →
-                </a>
+      {/* Stats */}
+      <section style={{ background: 'var(--white)', borderBottom: '1px solid rgba(26,61,43,0.07)' }}>
+        <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
+          {[
+            { n:`${locations.length}+`, l:'Swim Spots' },
+            { n:`${statesWithData}`, l:'States Covered' },
+            { n:'100%', l:'Free Access' },
+            { n:'Wild', l:'& Natural' },
+          ].map(({n,l}) => (
+            <div key={l} className="stat-item">
+              <div className="stat-number">{n}</div>
+              <div className="stat-label">{l}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured */}
+      <section style={{ padding: '5rem 1.5rem 4rem' }}>
+        <div className="container">
+          <p className="section-label">🌊 Top Picks</p>
+          <h2 className="section-title">Featured Swim Spots</h2>
+          <p className="section-sub" style={{ marginBottom: '3rem' }}>The most popular natural swimming locations across the US.</p>
+          <div className="grid-3">
+            {featured.map((spot, i) => (
+              <Link key={spot.slug} href={`/${spot.stateSlug}/${spot.slug}`} style={{ textDecoration: 'none' }}>
+                <article className="card">
+                  <img src={`https://source.unsplash.com/800x500/?${IMG_KEYWORDS[i%IMG_KEYWORDS.length]}&sig=${i+1}`} alt={spot.name} className="card-img" loading="lazy" width={800} height={500} />
+                  <div className="card-body">
+                    <div className="card-meta"><span>📍</span><span>{spot.city ? `${spot.city}, ` : ''}{spot.state}</span></div>
+                    <h3 className="card-title">{spot.name}</h3>
+                    <p style={{ fontSize: '0.875rem', color: '#667', lineHeight: 1.65, flex: 1, marginBottom: '1rem' }}>{spot.description.slice(0,110)}…</p>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                      {spot.amenities.slice(0,3).map((a) => <span key={a} className="chip">{a}</span>)}
+                    </div>
+                  </div>
+                </article>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section style={{ background: 'linear-gradient(135deg, var(--forest) 0%, #0a2d1e 100%)', padding: '5rem 1.5rem' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+            <p style={{ color: '#a8e6c0', fontWeight: 700, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '0.75rem', fontFamily: 'var(--font-display)' }}>Simple Process</p>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', color: 'var(--white)' }}>How to Find Your Spot</h2>
+          </div>
+          <div className="grid-3">
+            {[
+              { icon:'🗺️', title:'Browse by State', desc:'Pick your state to see all natural swimming holes and water spots in that area.' },
+              { icon:'🔍', title:'Check Details', desc:'Review the spot description, amenities, GPS coordinates, and safety notes.' },
+              { icon:'🏊', title:'Take the Plunge', desc:'Navigate to your chosen spot and experience the best wild swimming in America.' },
+            ].map(({icon,title,desc}) => (
+              <div key={title} style={{ textAlign: 'center', padding: '1.5rem' }}>
+                <div className="step-num">{icon}</div>
+                <h3 style={{ fontFamily: 'var(--font-display)', color: '#a8e6c0', fontSize: '1.15rem', marginBottom: '0.75rem' }}>{title}</h3>
+                <p style={{ color: '#6a9a78', lineHeight: 1.7, fontSize: '0.95rem' }}>{desc}</p>
               </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Main Content */}
-        <section style={{ marginBottom: '3rem', lineHeight: 1.8 }}>
-          <h2 style={{ fontSize: '1.75rem', marginBottom: '1rem', color: '#0056b3' }}>About Swimming Holes</h2>
-          <p>
-            Swimming holes are natural water formations—creeks, rivers, lakes, and waterfalls—that offer opportunities for outdoor swimming and recreation. These pristine locations provide an escape from busy public pools and a chance to connect with nature. From mountain springs to scenic river bends, swimming holes offer unique experiences across diverse landscapes and climates.
-          </p>
-          <p>
-            Our directory features tested swimming locations across the United States, each selected for water quality, accessibility, and natural beauty. Whether you're seeking a cool dip on a hot summer day or an adventurous exploration of hidden natural gems, Find Swim Spots helps you discover the perfect location.
-          </p>
+      {/* Content */}
+      <section style={{ padding: '5rem 1.5rem' }}>
+        <div className="container" style={{ maxWidth: '860px' }}>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', color: 'var(--forest)', marginBottom: '1.25rem' }}>{"America's Best Swimming Holes"}</h2>
+          <p style={{ lineHeight: 1.85, marginBottom: '1.25rem' }}>Swimming holes are one of nature's greatest gifts — cool, clear water surrounded by rock and forest, a world away from crowded pools and beach resorts. From the limestone-filtered springs of Florida to the glacial pools of the Pacific Northwest, the United States is home to thousands of natural swimming destinations waiting to be discovered.</p>
+          <p style={{ lineHeight: 1.85, marginBottom: '1.25rem' }}>Natural swimming spots come in many forms: deep creek holes carved by rushing water, mountain pools fed by snowmelt waterfalls, coastal tidal pools teeming with life, and thermally-heated springs that remain warm even in winter. Each has its own character and seasonal rhythm.</p>
+          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', color: 'var(--forest)', marginTop: '2rem', marginBottom: '0.75rem' }}>Safety First</h3>
+          <p style={{ lineHeight: 1.85, marginBottom: '1.25rem' }}>Wild swimming is exhilarating but requires care. Always check water quality reports before swimming, be aware of current and depth, never swim alone, and know your limits. Many natural spots have seasonal closures due to weather conditions or wildlife protection.</p>
+          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', color: 'var(--forest)', marginTop: '2rem', marginBottom: '0.75rem' }}>Leave No Trace</h3>
+          <p style={{ lineHeight: 1.85 }}>Natural swimming holes are fragile ecosystems. Pack out all trash, avoid using soaps or sunscreen in the water, and stay on established paths. Leave each spot exactly as you found it — or better.</p>
+        </div>
+      </section>
 
-          <h3 style={{ fontSize: '1.2rem', color: '#0056b3', marginTop: '2rem' }}>Safety First: Swimming in Natural Water</h3>
-          <p>
-            Swimming in natural water bodies carries inherent risks. Always prioritize safety when visiting any swim spot:
-          </p>
-          <ul style={{ lineHeight: 2 }}>
-            <li>
-              <strong>Check Conditions:</strong> Before visiting, research current water conditions, weather forecasts, and any posted warnings or closures. Water conditions can change rapidly.
-            </li>
-            <li>
-              <strong>Never Swim Alone:</strong> Always bring a buddy or visit with a group. Having someone present increases safety and allows for quick assistance if needed.
-            </li>
-            <li>
-              <strong>Verify Water Quality:</strong> Check with local environmental agencies or park services for water quality reports. Some locations test for harmful bacteria or algae blooms.
-            </li>
-            <li>
-              <strong>Respect Warnings:</strong> Obey all posted signs and warnings. If an area is marked as unsafe or closed, do not enter.
-            </li>
-            <li>
-              <strong>Wear Appropriate Gear:</strong> Consider wearing a life jacket or water shoes, especially at unfamiliar locations or in strong currents.
-            </li>
-            <li>
-              <strong>Be Aware of Surroundings:</strong> Watch for rocks, drop-offs, strong currents, and weather changes while in the water.
-            </li>
-          </ul>
+      {/* FAQ */}
+      <section style={{ background: 'var(--cream)', borderTop: '1px solid rgba(26,61,43,0.06)', padding: '5rem 1.5rem' }}>
+        <div className="container" style={{ maxWidth: '800px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <p className="section-label">Common Questions</p>
+            <h2 className="section-title">FAQ</h2>
+          </div>
+          {[
+            { q:'Are swimming holes safe?', a:'Natural swimming spots vary in safety. Always check current conditions, water quality reports, and depth before entering. Never swim alone and be aware of underwater hazards like submerged rocks and strong currents.' },
+            { q:'Do I need permission to swim in natural spots?', a:'Many natural swimming holes are on public land and freely accessible. Some are on private land — always check before accessing. Respect any closures or posted regulations.' },
+            { q:'When is the best time to visit swimming holes?', a:'Most swimming holes are best in summer (June–September). Spring runoff can make some spots dangerous. Fall offers uncrowded conditions in milder climates.' },
+            { q:'What should I bring?', a:'Bring water shoes, a dry bag, sunscreen, water, snacks, and a towel. A first aid kit is always wise. Check for parking requirements.' },
+            { q:'How do I find swimming holes near me?', a:'Use our directory to browse by state. Each listing includes GPS coordinates for direct navigation.' },
+          ].map(({q,a}) => (
+            <details key={q} className="faq-item">
+              <summary>{q}</summary>
+              <div className="faq-answer">{a}</div>
+            </details>
+          ))}
+        </div>
+      </section>
 
-          <h3 style={{ fontSize: '1.2rem', color: '#0056b3', marginTop: '2rem' }}>How to Use This Directory</h3>
-          <p>
-            Browse our comprehensive directory by state or search for specific locations. Each listing includes detailed information about amenities, access points, and safety considerations. We recommend reading reviews and checking local resources before planning your visit to ensure the best and safest experience.
-          </p>
-
-          <h3 style={{ fontSize: '1.2rem', color: '#0056b3', marginTop: '2rem' }}>Best Seasons for Swimming</h3>
-          <p>
-            While swimming holes can be enjoyed year-round, different seasons offer unique experiences. Summer (June-August) provides the warmest water temperatures and is the most popular season. Spring and early fall offer pleasant swimming conditions with fewer crowds. Winter swimming is possible at some locations but requires careful preparation. Always check seasonal water temperatures and weather conditions before planning your visit.
-          </p>
-        </section>
-
-        {/* FAQ Section */}
-        <section style={{ marginBottom: '3rem' }}>
-          <h2 style={{ fontSize: '1.75rem', marginBottom: '1.5rem', color: '#0056b3' }}>Frequently Asked Questions</h2>
-          <div>
-            {faqs.map((faq, idx) => (
-              <div key={idx} style={{ marginBottom: '1.5rem', borderBottom: '1px solid #eee', paddingBottom: '1rem' }}>
-                <h3 style={{ color: '#0056b3', marginBottom: '0.5rem', fontSize: '1rem' }}>{faq.question}</h3>
-                <p style={{ margin: 0, color: '#666' }}>{faq.answer}</p>
-              </div>
+      {/* Browse States */}
+      <section style={{ padding: '5rem 1.5rem' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <p className="section-label">All 50 States</p>
+            <h2 className="section-title">Browse by State</h2>
+          </div>
+          <div className="grid-states">
+            {ALL_STATES.map((s) => (
+              <Link key={s} href={`/${s.toLowerCase().replace(/\s+/g,'-')}`} className="state-link">{s}</Link>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Browse by State */}
-        <section style={{ marginBottom: '3rem' }}>
-          <h2 style={{ fontSize: '1.75rem', marginBottom: '1.5rem', color: '#0056b3' }}>Browse Swimming Holes by State</h2>
-          <p style={{ marginBottom: '1.5rem' }}>Find swimming holes near you by browsing our state-by-state directory:</p>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-              gap: '1rem',
-            }}
-          >
-            {STATES.map((state) => (
-              <a
-                key={state.slug}
-                href={`/${state.slug}`}
-                style={{
-                  padding: '1rem',
-                  border: '1px solid #ddd',
-                  borderRadius: '4px',
-                  textAlign: 'center',
-                  textDecoration: 'none',
-                  color: '#0056b3',
-                  backgroundColor: '#f9f9f9',
-                  transition: 'all 0.2s',
-                }}
-              >
-                {state.name}
-              </a>
-            ))}
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section style={{ textAlign: 'center', marginBottom: '2rem', padding: '2rem', backgroundColor: '#f0f0f0', borderRadius: '8px' }}>
-          <h2 style={{ color: '#0056b3', marginTop: 0 }}>Ready to Find Your Next Swimming Adventure?</h2>
-          <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem' }}>
-            Explore our comprehensive directory of swimming holes and natural water spots across the United States.
-          </p>
-          <a
-            href="/browse-states"
-            style={{
-              display: 'inline-block',
-              padding: '0.75rem 2rem',
-              backgroundColor: '#0056b3',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '4px',
-              fontSize: '1.05rem',
-              fontWeight: 'bold',
-            }}
-          >
-            Browse All States
-          </a>
-        </section>
-      </article>
+      {/* CTA */}
+      <section style={{ background: 'var(--forest)', padding: '4rem 1.5rem', textAlign: 'center' }}>
+        <div className="container" style={{ maxWidth: '600px' }}>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', color: 'var(--white)', marginBottom: '1rem' }}>Ready to Take the Plunge?</h2>
+          <p style={{ color: '#6a9a78', marginBottom: '2rem', lineHeight: 1.7, fontFamily: 'var(--font-display)' }}>Explore {locations.length}+ natural swim spots across {statesWithData} states — all free.</p>
+          <Link href="/browse-states" className="btn" style={{ background: '#a8e6c0', color: 'var(--forest)', padding: '0.85rem 2rem', borderRadius: '50px', fontWeight: 700, fontFamily: 'var(--font-display)', display: 'inline-flex' }}>Explore Swim Spots →</Link>
+        </div>
+      </section>
     </>
   );
 }

@@ -1,134 +1,95 @@
+/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { STATES } from '../states';
 import locations from '@/data/locations.json';
 
 export const revalidate = 86400;
 
-function formatStateName(slug: string): string {
-  return slug.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-}
-
-export function generateMetadata({ params }: { params: Promise<{ state: string }> }): Metadata {
-  const paramsSync = params as any;
-  const stateName = formatStateName(paramsSync.state);
-  return {
-    title: `Swimming Holes in ${stateName}`,
-    description: `Find swimming holes and natural water spots in ${stateName}. Browse tested locations with safety tips and local information.`,
-  };
+function getStateName(slug: string) {
+  return STATES.find((s) => s.slug === slug)?.name ?? slug.split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
 }
 
 export function generateStaticParams() {
-  return STATES.map((state) => ({
-    state: state.slug,
-  }));
+  return STATES.map((s) => ({ state: s.slug }));
 }
+
+export async function generateMetadata({ params }: { params: Promise<{ state: string }> }): Promise<Metadata> {
+  const { state } = await params;
+  const stateName = getStateName(state);
+  return {
+    title: `Swimming Holes in ${stateName}`,
+    description: `Find natural swimming holes, pools, and wild swim spots in ${stateName}. Browse free public swimming locations with GPS coordinates.`,
+    alternates: { canonical: `https://findswimspots.com/${state}` },
+  };
+}
+
+const IMG_KEYWORDS = ['swimming+hole','waterfall','river+swimming','natural+pool','creek','lake+swimming','forest+river','mountain+lake'];
 
 export default async function StatePage({ params }: { params: Promise<{ state: string }> }) {
   const { state } = await params;
-  const stateName = formatStateName(state);
-  const stateLocations = locations.filter((loc) => loc.stateSlug === state);
-
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://findswimspots.com',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: stateName,
-        item: `https://findswimspots.com/${state}`,
-      },
-    ],
-  };
+  const stateName = getStateName(state);
+  const spots = locations.filter((l) => l.stateSlug === state);
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context':'https://schema.org','@type':'BreadcrumbList',
+        itemListElement:[
+          {  '@type':'ListItem',position:1,name:'Home',item:'https://findswimspots.com'},
+          {'@type':'ListItem',position:2,name:stateName,item:`https://findswimspots.com/${state}`},
+        ],
+      }) }} />
 
-      <article style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
-        <nav style={{ marginBottom: '1.5rem' }}>
-          <a href="/" style={{ color: '#0056b3', textDecoration: 'none' }}>
-            Home
-          </a>
-          {' > '}
-          <span>{stateName}</span>
-        </nav>
-
-        <h1 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#0056b3' }}>Swimming Holes in {stateName}</h1>
-        <p style={{ fontSize: '1.1rem', color: '#666', marginBottom: '2rem' }}>
-          Explore swimming holes and natural water spots across {stateName}. Find the best locations with detailed information about amenities, access, and safety.
-        </p>
-
-        {stateLocations.length > 0 ? (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '1.5rem' }}>
-            {stateLocations.map((location) => (
-              <div
-                key={location.slug}
-                style={{
-                  border: '1px solid #ddd',
-                  borderRadius: '8px',
-                  padding: '1.5rem',
-                  backgroundColor: '#f9f9f9',
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
-                }}
-              >
-                <h2 style={{ marginTop: 0, color: '#0056b3', fontSize: '1.25rem' }}>
-                  <a href={`/${state}/${location.slug}`} style={{ textDecoration: 'none', color: '#0056b3' }}>
-                    {location.name}
-                  </a>
-                </h2>
-                <p style={{ margin: '0.5rem 0', color: '#666' }}>
-                  <strong>{location.city}, {location.state}</strong>
-                </p>
-                <p style={{ margin: '1rem 0', lineHeight: 1.5 }}>{location.description}</p>
-                <p style={{ margin: '0.5rem 0', fontSize: '0.875rem', color: '#666' }}>
-                  <strong>Amenities:</strong> {location.amenities.slice(0, 4).join(', ')}
-                </p>
-                <p style={{ margin: '0.5rem 0', fontSize: '0.875rem', color: '#666' }}>
-                  <strong>Coordinates:</strong> {location.lat.toFixed(4)}, {location.lng.toFixed(4)}
-                </p>
-                <a
-                  href={`/${state}/${location.slug}`}
-                  style={{
-                    display: 'inline-block',
-                    marginTop: '1rem',
-                    color: '#0056b3',
-                    textDecoration: 'none',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  View Details →
-                </a>
-              </div>
-            ))}
+      {/* Hero */}
+      <section style={{ position: 'relative', background: 'linear-gradient(135deg, var(--forest) 0%, #0a2d1e 100%)', padding: '4rem 1.5rem 3.5rem', overflow: 'hidden' }}>
+        <div aria-hidden style={{ position: 'absolute', top: 0, right: 0, width: '45%', height: '100%', background: `url("https://source.unsplash.com/1200x600/?swimming+hole,nature&sig=88") center/cover no-repeat`, opacity: 0.1, pointerEvents: 'none' }} />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <Link href="/" style={{ color: '#a8e6c0', fontSize: '0.875rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', marginBottom: '1.5rem', fontWeight: 700, fontFamily: 'var(--font-display)' }}>← All States</Link>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem,4vw,2.8rem)', color: 'white', marginBottom: '0.75rem' }}>
+            Swimming Holes in <span style={{ color: '#a8e6c0' }}>{stateName}</span>
+          </h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+            <span className="chip chip-white">{spots.length} {spots.length===1?'Spot':'Spots'} Listed</span>
+            <span style={{ color: '#7ab89a', fontSize: '0.9rem', fontFamily: 'var(--font-display)' }}>Natural &amp; free access</span>
           </div>
-        ) : (
-          <div style={{ padding: '2rem', backgroundColor: '#f0f0f0', borderRadius: '8px', textAlign: 'center' }}>
-            <h2 style={{ color: '#666', marginTop: 0 }}>Coming Soon</h2>
-            <p style={{ color: '#888' }}>
-              We're working on adding swimming holes for {stateName}. Check back soon for updated listings!
-            </p>
-            <a
-              href="/"
-              style={{
-                display: 'inline-block',
-                marginTop: '1rem',
-                color: '#0056b3',
-                textDecoration: 'none',
-                fontWeight: 'bold',
-              }}
-            >
-              ← Back to Home
-            </a>
-          </div>
-        )}
-      </article>
+        </div>
+        <svg aria-hidden viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', display: 'block' }} preserveAspectRatio="none">
+          <path d="M0,20 C360,40 1080,0 1440,20 L1440,40 L0,40 Z" fill="var(--ivory)" />
+        </svg>
+      </section>
+
+      {/* Grid */}
+      <section style={{ padding: '4rem 1.5rem' }}>
+        <div className="container">
+          {spots.length > 0 ? (
+            <div className="grid-3">
+              {spots.map((spot, i) => (
+                <Link key={spot.slug} href={`/${state}/${spot.slug}`} style={{ textDecoration: 'none' }}>
+                  <article className="card">
+                    <img src={`https://source.unsplash.com/800x500/?${IMG_KEYWORDS[i%IMG_KEYWORDS.length]}&sig=${i+30}`} alt={spot.name} className="card-img" loading="lazy" width={800} height={500} />
+                    <div className="card-body">
+                      <div className="card-meta"><span>📍</span><span>{spot.city ? `${spot.city}, ` : ''}{spot.state}</span></div>
+                      <h2 className="card-title">{spot.name}</h2>
+                      <p style={{ fontSize: '0.875rem', color: '#667', lineHeight: 1.65, flex: 1, marginBottom: '1rem' }}>{spot.description.slice(0,100)}…</p>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
+                        {spot.amenities.slice(0,3).map((a) => <span key={a} className="chip">{a}</span>)}
+                      </div>
+                    </div>
+                  </article>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div style={{ textAlign: 'center', padding: '5rem 2rem', background: 'var(--white)', borderRadius: 'var(--radius)', boxShadow: 'var(--shadow-card)' }}>
+              <p style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🌿</p>
+              <h2 style={{ fontFamily: 'var(--font-display)', color: 'var(--forest)', marginBottom: '0.75rem' }}>Coming Soon</h2>
+              <p style={{ color: 'var(--gray)' }}>{"We're adding swim spots in "}{stateName}{" — check back soon!"}</p>
+              <Link href="/" className="btn btn-green" style={{ display: 'inline-flex', marginTop: '1.5rem' }}>Browse Other States</Link>
+            </div>
+          )}
+        </div>
+      </section>
     </>
   );
 }
