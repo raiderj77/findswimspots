@@ -85,7 +85,7 @@ export default function Home() {
             {featured.map((spot, i) => (
               <Link key={spot.slug} href={`/${spot.stateSlug}/${spot.slug}`} style={{ textDecoration: 'none' }}>
                 <article className="card">
-                  <img src={`https://source.unsplash.com/800x500/?${IMG_KEYWORDS[i%IMG_KEYWORDS.length]}&sig=${i+1}`} alt={spot.name} className="card-img" loading="lazy" width={800} height={500} />
+                  <img src={`https://picsum.photos/seed/${spot.slug}/800/500`} alt={spot.name} className="card-img" loading="lazy" width={800} height={500} />
                   <div className="card-body">
                     <div className="card-meta"><span>📍</span><span>{spot.city ? `${spot.city}, ` : ''}{spot.state}</span></div>
                     <h3 className="card-title">{spot.name}</h3>

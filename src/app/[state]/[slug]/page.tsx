@@ -73,7 +73,7 @@ export default async function SpotPage({ params }: { params: Promise<{ state: st
       {/* Hero */}
       <div style={{ position: 'relative', height: '460px', overflow: 'hidden' }}>
         <img
-          src={`https://source.unsplash.com/1600x800/?${heroKeyword}&sig=${slug.length + 100}`}
+          src={`https://picsum.photos/seed/${slug}/1400/600`}
           alt={`${location.name} natural swimming spot`}
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           width={1600}
@@ -190,7 +190,7 @@ export default async function SpotPage({ params }: { params: Promise<{ state: st
               {related.map((spot, i) => (
                 <Link key={spot.slug} href={`/${state}/${spot.slug}`} style={{ textDecoration: 'none' }}>
                   <article className="card">
-                    <img src={`https://source.unsplash.com/800x400/?swimming+hole,nature&sig=${i + 70}`} alt={spot.name} className="card-img" loading="lazy" width={800} height={400} />
+                    <img src={`https://picsum.photos/seed/${spot.slug}/800/500`} alt={spot.name} className="card-img" loading="lazy" width={800} height={400} />
                     <div className="card-body">
                       <div className="card-meta"><span>📍</span><span>{spot.city ? `${spot.city}, ` : ''}{spot.state}</span></div>
                       <h3 className="card-title">{spot.name}</h3>
