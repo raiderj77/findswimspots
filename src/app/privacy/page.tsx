@@ -12,7 +12,7 @@ export default function PrivacyPage() {
     <article style={{ paddingTop: '2rem', paddingBottom: '2rem', maxWidth: '900px', margin: '0 auto' }}>
       <h1 style={{ fontSize: '2rem', color: '#0056b3', marginBottom: '1.5rem' }}>Privacy Policy</h1>
 
-      <p style={{ color: '#666', fontStyle: 'italic' }}>Last updated: April 4, 2026</p>
+      <p style={{ color: '#666', fontStyle: 'italic' }}>Last updated: April 6, 2026</p>
 
       <section style={{ marginBottom: '2rem' }}>
         <h2 style={{ fontSize: '1.25rem', color: '#0056b3' }}>Introduction</h2>
@@ -88,6 +88,9 @@ export default function PrivacyPage() {
           We use Google AdSense to display advertisements on our website. Google's use of advertising cookies enables it and its partners to serve ads to our users based on their visits to this and other websites on the Internet.
         </p>
         <p>
+          We work with third-party advertising partners, including Google, who may use cookies to serve ads based on your prior visits to this website or other websites.
+        </p>
+        <p>
           Google AdSense may collect and use the following information:
         </p>
         <ul>
@@ -99,7 +102,12 @@ export default function PrivacyPage() {
         <p>
           For more information about Google's privacy practices, please visit the Google Privacy & Terms page: <a href="https://policies.google.com/privacy" style={{ color: '#0056b3' }}>https://policies.google.com/privacy</a>
         </p>
-        <p>You may opt out of personalized advertising by visiting Ad Settings or the Network Advertising Initiative.</p>
+        <p>
+          You may opt out of personalized advertising by visiting{' '}
+          <a href="https://ads.google.com/settings" rel="nofollow" style={{ color: '#0056b3' }}>Google Ad Settings</a>
+          {' '}or the{' '}
+          <a href="https://optout.aboutads.info" rel="nofollow" style={{ color: '#0056b3' }}>Digital Advertising Alliance opt-out page</a>.
+        </p>
       </section>
 
       <section style={{ marginBottom: '2rem' }}>
