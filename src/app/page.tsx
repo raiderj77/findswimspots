@@ -30,7 +30,30 @@ export default function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context':'https://schema.org','@type':'WebSite',url:'https://findswimspots.com',
-        name:'Find Swim Spots',potentialAction:{'@type':'SearchAction',target:{'@type':'EntryPoint',urlTemplate:'https://findswimspots.com/search?q={search_term_string}'},'query-input':'required name=search_term_string'},
+        name:'Find Swim Spots',dateModified:'2026-04-07',potentialAction:{'@type':'SearchAction',target:{'@type':'EntryPoint',urlTemplate:'https://findswimspots.com/search?q={search_term_string}'},'query-input':'required name=search_term_string'},
+      }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context':'https://schema.org','@type':'Organization',
+        name:'Find Swim Spots',url:'https://findswimspots.com',
+        description:'Directory of public swimming spots across the United States',
+        dateModified:'2026-04-07',
+      }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context':'https://schema.org','@type':'LocalBusiness',
+        name:'Find Swim Spots Directory',url:'https://findswimspots.com',
+        description:'Find public swimming holes, lakes, rivers, and beaches near you',
+        areaServed:'United States',dateModified:'2026-04-07',
+      }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context':'https://schema.org','@type':'FAQPage',
+        dateModified:'2026-04-07',
+        mainEntity:[
+          {'@type':'Question',name:'How do I find a public swimming spot near me?',acceptedAnswer:{'@type':'Answer',text:'Use the Find Swim Spots directory to search by state, county, or city. Each listing includes the location type (lake, river, swimming hole, or beach), water quality information, parking availability, and amenities like restrooms and lifeguards.'}},
+          {'@type':'Question',name:'Are public swimming spots free to use?',acceptedAnswer:{'@type':'Answer',text:'Many natural swimming spots are free, but some state parks and managed recreation areas charge a day-use fee ranging from $5 to $15 per vehicle. Always check the individual listing for current fee information before visiting.'}},
+          {'@type':'Question',name:'Is it safe to swim in natural swimming holes?',acceptedAnswer:{'@type':'Answer',text:'Safety varies by location and conditions. Always check local water quality advisories before swimming, look for posted warnings about currents or depth, and never swim alone. Blue-green algae blooms can make water unsafe — check with local health departments for current advisories.'}},
+          {'@type':'Question',name:'What should I bring to a public swimming spot?',acceptedAnswer:{'@type':'Answer',text:'Bring sunscreen, water shoes for rocky or uneven bottoms, a life jacket for children or non-swimmers, plenty of water to stay hydrated, and a first aid kit. Check whether lifeguards are on duty — many natural swimming areas are unguarded.'}},
+          {'@type':'Question',name:'Do public swimming spots have restrooms and parking?',acceptedAnswer:{'@type':'Answer',text:'Facilities vary widely. Managed state park swim areas typically have restrooms, changing areas, and defined parking. Natural swimming holes on public land may have minimal or no facilities. Check individual listings for available amenities before your trip.'}},
+        ],
       }) }} />
 
       {/* Hero */}
@@ -170,6 +193,40 @@ export default function Home() {
             {ALL_STATES.map((s) => (
               <Link key={s} href={`/${s.toLowerCase().replace(/\s+/g,'-')}`} className="state-link">{s}</Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* GEO Content */}
+      <section style={{ padding: '5rem 1.5rem', background: 'var(--ivory)' }}>
+        <div className="container" style={{ maxWidth: '860px' }}>
+
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', color: 'var(--forest)', marginBottom: '0.75rem' }}>How to find the best swimming spot for your group</h2>
+          <p style={{ fontSize: '1.05rem', fontWeight: 600, lineHeight: 1.7, marginBottom: '0.75rem', color: '#2a4a35' }}>Search by state and filter by water type — lakes offer calmer water for families, rivers provide current and scenery, and swimming holes offer seclusion. Check water quality ratings and lifeguard status before visiting.</p>
+          <p style={{ lineHeight: 1.85, marginBottom: '0.75rem' }}>Matching the right spot to your group comes down to skill level and what the group enjoys. Families with young children do better at managed lake beaches with designated swim zones and lifeguards on duty. More experienced swimmers may prefer the solitude and scenery of a backcountry river hole. There are over 30,000 publicly accessible natural swimming areas in the United States managed by federal, state, and local agencies — the variety is enormous.</p>
+          <p style={{ lineHeight: 1.85, marginBottom: '2.5rem' }}>Use the directory to filter by amenities and read the individual spot description to understand access difficulty, parking, and typical crowd levels before committing to a day trip.</p>
+
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', color: 'var(--forest)', marginBottom: '0.75rem' }}>What water quality signs should I look for before swimming?</h2>
+          <p style={{ fontSize: '1.05rem', fontWeight: 600, lineHeight: 1.7, marginBottom: '0.75rem', color: '#2a4a35' }}>Look for posted water quality advisories, check the local health department website, and avoid water that appears green, has an unusual smell, or has visible foam — these can indicate harmful algae blooms.</p>
+          <p style={{ lineHeight: 1.85, marginBottom: '0.75rem' }}>Blue-green algae (cyanobacteria) affects thousands of water bodies every summer and can produce toxins harmful to humans and pets. Symptoms of exposure include skin rashes, stomach illness, and in severe cases liver damage. Always check your state health department's current advisories and the EPA's beach monitoring data before visiting any natural swimming area.</p>
+          <p style={{ lineHeight: 1.85, marginBottom: '2.5rem' }}>The EPA monitors water quality at over 3,000 swimming beaches nationally through the BEACH Act program, providing public advisories when bacterial or algae levels exceed safe thresholds. For inland swimming holes not covered by the BEACH program, check with the county health department or the land management agency responsible for the site.</p>
+
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', color: 'var(--forest)', marginBottom: '0.75rem' }}>When is the best time to visit public swimming spots?</h2>
+          <p style={{ fontSize: '1.05rem', fontWeight: 600, lineHeight: 1.7, marginBottom: '0.75rem', color: '#2a4a35' }}>Weekday mornings offer the least crowding at most public swimming areas. Peak season runs June through August — arriving before 10am on weekends dramatically reduces crowds at popular spots.</p>
+          <p style={{ lineHeight: 1.85, marginBottom: '0.75rem' }}>Water temperature peaks in July and August in most U.S. regions, making those months the most comfortable for extended swimming. In the South and Southwest, late May and early June can offer ideal conditions before summer heat and algae season peak. Mountain swimming holes, fed by snowmelt, often reach swimmable temperatures in late June and remain good through September.</p>
+          <p style={{ lineHeight: 1.85, marginBottom: '2.5rem' }}>Shoulder season visits — May and September — reward early planners with lower crowds, intact parking, and often cleaner water. Many natural areas see 60–70% of their annual foot traffic in the eight weeks between July 4th and Labor Day.</p>
+
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', color: 'var(--forest)', marginBottom: '0.75rem' }}>Are children safe at natural swimming areas?</h2>
+          <p style={{ fontSize: '1.05rem', fontWeight: 600, lineHeight: 1.7, marginBottom: '0.75rem', color: '#2a4a35' }}>Natural swimming areas require extra supervision for children — depths and currents can change rapidly and lifeguards are often absent. Life jackets are recommended for children under 12 at unguarded sites.</p>
+          <p style={{ lineHeight: 1.85, marginBottom: '2.5rem' }}>Drowning is the second leading cause of unintentional injury death in the U.S. for children ages 1 to 14, according to the CDC — proper supervision and life jackets significantly reduce risk. When visiting natural swimming holes with children, look for listings that specifically note a designated shallow swimming area, gradual entry, and minimal current. Always assign a dedicated water watcher whose sole responsibility is keeping eyes on children in and near the water.</p>
+
+          <div style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(26,61,43,0.05)', borderLeft: '4px solid var(--forest-mid)', borderRadius: '0 8px 8px 0' }}>
+            <p style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--forest)', marginBottom: '0.75rem' }}>Further Reading</p>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              <li><a href="https://www.epa.gov/beach-tech" rel="nofollow noopener noreferrer" target="_blank" style={{ color: '#0056b3', fontSize: '0.9rem' }}>EPA Swim Healthy — Beach monitoring and water quality resources</a></li>
+              <li><a href="https://www.cdc.gov/healthywater/swimming" rel="nofollow noopener noreferrer" target="_blank" style={{ color: '#0056b3', fontSize: '0.9rem' }}>CDC Healthy Swimming — Safety guidelines and illness prevention</a></li>
+              <li><a href="https://www.recreation.gov" rel="nofollow noopener noreferrer" target="_blank" style={{ color: '#0056b3', fontSize: '0.9rem' }}>U.S. Army Corps of Engineers — Recreation.gov facility finder</a></li>
+            </ul>
           </div>
         </div>
       </section>
