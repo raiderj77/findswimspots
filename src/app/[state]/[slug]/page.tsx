@@ -6,6 +6,21 @@ import locations from '@/data/locations.json';
 
 export const revalidate = 86400;
 
+const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN ?? '';
+
+function getMapboxImage(lat: number, lng: number, width = 800, height = 500): string {
+  return `https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/${lng},${lat},13,0/${width}x${height}?access_token=${MAPBOX_TOKEN}`;
+}
+
+function getSpotPreview(spot: { name: string; state: string; city: string; amenities: string[]; description: string }): string {
+  const amenityCount = spot.amenities.length;
+  const location = spot.city ? `${spot.city}, ${spot.state}` : spot.state;
+  if (amenityCount >= 2) {
+    return `Swimming spot in ${location} with ${amenityCount} amenities including ${spot.amenities.slice(0, 2).join(' and ').toLowerCase()}.`;
+  }
+  return `Public swimming spot in ${location}. Free access to natural waterways.`;
+}
+
 function getStateName(slug: string) {
   return STATES.find((s) => s.slug === slug)?.name ?? slug.split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
 }
@@ -32,8 +47,6 @@ const AMENITY_ICONS: Record<string, string> = {
   'Wheelchair accessible': '♿', 'No fee': '✅', 'Fire pit': '🔥', 'Shade': '🌿',
 };
 
-const HERO_KEYWORDS = ['swimming+hole', 'waterfall+pool', 'river+swimming', 'natural+pool', 'creek+swim', 'mountain+lake', 'forest+river', 'waterfall'];
-
 export default async function SpotPage({ params }: { params: Promise<{ state: string; slug: string }> }) {
   const { state, slug } = await params;
   const location = locations.find((l) => l.slug === slug);
@@ -50,7 +63,6 @@ export default async function SpotPage({ params }: { params: Promise<{ state: st
   }
 
   const related = locations.filter((l) => l.stateSlug === state && l.slug !== slug).slice(0, 3);
-  const heroKeyword = HERO_KEYWORDS[slug.length % HERO_KEYWORDS.length];
 
   return (
     <>
@@ -71,13 +83,13 @@ export default async function SpotPage({ params }: { params: Promise<{ state: st
       }) }} />
 
       {/* Hero */}
-      <div style={{ position: 'relative', height: '460px', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', height: '460px', overflow: 'hidden', background: 'linear-gradient(160deg, var(--forest) 0%, #0b3d4f 100%)' }}>
         <img
-          src={`https://picsum.photos/seed/${slug}/1400/600`}
+          src={getMapboxImage(location.lat, location.lng, 1400, 600)}
           alt={`${location.name} natural swimming spot`}
-          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-          width={1600}
-          height={800}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.85 }}
+          width={1400}
+          height={600}
         />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,30,18,0.9) 0%, rgba(10,30,18,0.3) 55%, transparent 100%)' }} />
         <div className="container" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '2rem 1.5rem' }}>
@@ -103,7 +115,11 @@ export default async function SpotPage({ params }: { params: Promise<{ state: st
           {/* Left — details */}
           <div>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: 'var(--forest)', marginBottom: '1rem' }}>About This Spot</h2>
-            <p style={{ lineHeight: 1.9, marginBottom: '2.5rem', color: 'var(--text)', fontSize: '1.025rem' }}>{location.description}</p>
+            <p style={{ lineHeight: 1.9, marginBottom: '2.5rem', color: 'var(--text)', fontSize: '1.025rem' }}>
+              {location.name} is a public swimming spot located in {location.city ? `${location.city}, ` : ''}{location.state}.{' '}
+              {location.amenities.length > 0 ? `This spot offers free public water access with ${location.amenities.length} amenities including ${location.amenities.slice(0, 2).join(' and ').toLowerCase()}.` : 'Free public access to natural waterways.'}{' '}
+              GPS coordinates are available for navigation.
+            </p>
 
             {location.amenities.length > 0 && (
               <>
@@ -190,11 +206,11 @@ export default async function SpotPage({ params }: { params: Promise<{ state: st
               {related.map((spot, i) => (
                 <Link key={spot.slug} href={`/${state}/${spot.slug}`} style={{ textDecoration: 'none' }}>
                   <article className="card">
-                    <img src={`https://picsum.photos/seed/${spot.slug}/800/500`} alt={spot.name} className="card-img" loading="lazy" width={800} height={400} />
+                    <img src={getMapboxImage(spot.lat, spot.lng)} alt={spot.name} className="card-img" loading="lazy" width={800} height={400} />
                     <div className="card-body">
                       <div className="card-meta"><span>📍</span><span>{spot.city ? `${spot.city}, ` : ''}{spot.state}</span></div>
                       <h3 className="card-title">{spot.name}</h3>
-                      <p style={{ fontSize: '0.85rem', color: '#667', lineHeight: 1.6 }}>{spot.description.slice(0, 85)}…</p>
+                      <p style={{ fontSize: '0.85rem', color: '#667', lineHeight: 1.6 }}>{getSpotPreview(spot)}</p>
                     </div>
                   </article>
                 </Link>

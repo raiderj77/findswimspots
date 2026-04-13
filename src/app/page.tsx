@@ -5,6 +5,21 @@ import locations from '@/data/locations.json';
 
 export const dynamic = 'force-static';
 
+const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN ?? '';
+
+function getMapboxImage(lat: number, lng: number, width = 800, height = 500): string {
+  return `https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/${lng},${lat},13,0/${width}x${height}?access_token=${MAPBOX_TOKEN}`;
+}
+
+function getSpotPreview(spot: { name: string; state: string; city: string; amenities: string[]; description: string }): string {
+  const amenityCount = spot.amenities.length;
+  const location = spot.city ? `${spot.city}, ${spot.state}` : spot.state;
+  if (amenityCount >= 2) {
+    return `Swimming spot in ${location} with ${amenityCount} amenities including ${spot.amenities.slice(0, 2).join(' and ').toLowerCase()}.`;
+  }
+  return `Public swimming spot in ${location}. Free access to natural waterways.`;
+}
+
 export const metadata: Metadata = {
   title: 'Find Swimming Holes & Natural Water Spots Near You',
   description: 'Discover the best swimming holes, natural pools, and wild swim spots across the USA. Free directory with safety tips and local knowledge.',
@@ -19,8 +34,6 @@ const ALL_STATES = [
   'Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont',
   'Virginia','Washington','West Virginia','Wisconsin','Wyoming',
 ];
-
-const IMG_KEYWORDS = ['swimming+hole','waterfall+pool','river+swimming','natural+pool','creek+swimming','lake+swimming'];
 
 export default function Home() {
   const featured = locations.slice(0, 6);
@@ -69,12 +82,10 @@ export default function Home() {
           <p className="anim-fade-up anim-delay-2" style={{ fontSize: '1.05rem', color: '#7ab89a', marginBottom: '2.75rem', maxWidth: '500px', margin: '0 auto 2.75rem', fontFamily: 'var(--font-display)', lineHeight: 1.65 }}>
             Natural pools, waterfalls, creek swims &amp; wild swimming spots — all free, all verified.
           </p>
-          <form method="GET" action="/search" className="anim-fade-up anim-delay-3">
-            <div className="search-wrap">
-              <input type="text" name="q" placeholder="Search by state, city, or spot name…" className="search-input" />
-              <button type="submit" className="search-btn">Find Spots</button>
-            </div>
-          </form>
+          <div className="anim-fade-up anim-delay-3" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center', marginTop: '2rem' }}>
+            <a href="/browse-states" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.85rem 2rem', borderRadius: 'var(--radius-pill)', fontWeight: 700, fontSize: '0.95rem', letterSpacing: '0.03em', background: 'var(--forest-mid)', color: 'white', textDecoration: 'none', transition: 'background 0.2s' }}>Browse by State →</a>
+            <a href="/florida" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.85rem 2rem', borderRadius: 'var(--radius-pill)', fontWeight: 700, fontSize: '0.95rem', letterSpacing: '0.03em', background: 'transparent', color: 'white', border: '2px solid rgba(168,230,192,0.4)', textDecoration: 'none', transition: 'background 0.2s' }}>View Sample Spots</a>
+          </div>
         </div>
         <svg aria-hidden viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', display: 'block' }} preserveAspectRatio="none">
           <path d="M0,40 C180,70 360,10 540,40 C720,70 900,10 1080,40 C1260,70 1380,30 1440,40 L1440,70 L0,70 Z" fill="var(--ivory)" />
@@ -108,11 +119,11 @@ export default function Home() {
             {featured.map((spot, i) => (
               <Link key={spot.slug} href={`/${spot.stateSlug}/${spot.slug}`} style={{ textDecoration: 'none' }}>
                 <article className="card">
-                  <img src={`https://picsum.photos/seed/${spot.slug}/800/500`} alt={spot.name} className="card-img" loading="lazy" width={800} height={500} />
+                  <img src={getMapboxImage(spot.lat, spot.lng)} alt={spot.name} className="card-img" loading="lazy" width={800} height={500} />
                   <div className="card-body">
                     <div className="card-meta"><span>📍</span><span>{spot.city ? `${spot.city}, ` : ''}{spot.state}</span></div>
                     <h3 className="card-title">{spot.name}</h3>
-                    <p style={{ fontSize: '0.875rem', color: '#667', lineHeight: 1.65, flex: 1, marginBottom: '1rem' }}>{spot.description.slice(0,110)}…</p>
+                    <p style={{ fontSize: '0.875rem', color: '#667', lineHeight: 1.65, flex: 1, marginBottom: '1rem' }}>{getSpotPreview(spot)}</p>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
                       {spot.amenities.slice(0,3).map((a) => <span key={a} className="chip">{a}</span>)}
                     </div>
