@@ -12,7 +12,7 @@ export default function PrivacyPage() {
     <article style={{ paddingTop: '2rem', paddingBottom: '2rem', maxWidth: '900px', margin: '0 auto' }}>
       <h1 style={{ fontSize: '2rem', color: '#0056b3', marginBottom: '1.5rem' }}>Privacy Policy</h1>
 
-      <p style={{ color: '#666', fontStyle: 'italic' }}>Last updated: April 6, 2026</p>
+      <p style={{ color: '#666', fontStyle: 'italic' }}>Last updated: April 19, 2026</p>
 
       <section style={{ marginBottom: '2rem' }}>
         <h2 style={{ fontSize: '1.25rem', color: '#0056b3' }}>Introduction</h2>
@@ -79,6 +79,32 @@ export default function PrivacyPage() {
         </p>
         <p>
           California residents have the right to request deletion of collected information and the right to know what information is collected, used, and shared. To submit a request, please contact us at <strong>privacy@findswimspots.com</strong>.
+        </p>
+      </section>
+
+      <section style={{ marginBottom: '2rem' }}>
+        <h2 style={{ fontSize: '1.25rem', color: '#0056b3' }}>MODPA Privacy Rights (Maryland Residents)</h2>
+        <p>
+          Find Swim Spots complies with the <strong>Maryland Online Data Privacy Act (MODPA)</strong>, effective April 1, 2026. If you are a Maryland resident, you have the following consumer rights:
+        </p>
+        <ol style={{ marginLeft: '1.5rem' }}>
+          <li><strong>Right to Access:</strong> Request what personal data we collect and how we use it.</li>
+          <li><strong>Right to Correct:</strong> Request correction of inaccurate personal data.</li>
+          <li><strong>Right to Delete:</strong> Request deletion of personal data we hold about you.</li>
+          <li><strong>Right to Opt-Out:</strong> Opt out of the sale or targeted advertising of your personal data.</li>
+          <li><strong>Right to Data Portability:</strong> Request a copy of your personal data in a portable format.</li>
+        </ol>
+        <p style={{ marginTop: '1rem' }}>
+          <strong>Global Privacy Control (GPC) Honor:</strong> Find Swim Spots respects and honors <strong>Global Privacy Control (GPC)</strong> signals from your browser or device. When GPC is enabled, we automatically treat it as a universal opt-out request and disable advertising tracking, analytics, and personalization.
+        </p>
+        <p style={{ marginTop: '0.5rem' }}>
+          <strong>Data Sales:</strong> Find Swim Spots does <strong>not sell</strong> your personal data.
+        </p>
+        <p style={{ marginTop: '0.5rem' }}>
+          <strong>Response Timeline:</strong> We will respond to consumer rights requests within <strong>45 days</strong> of receipt.
+        </p>
+        <p style={{ marginTop: '0.5rem' }}>
+          To submit a MODPA consumer rights request, contact us at <strong>privacy@findswimspots.com</strong> with your name, email, and the specific right you wish to exercise.
         </p>
       </section>
 
