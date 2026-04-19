@@ -69,6 +69,16 @@ export default function Home() {
         ],
       }) }} />
 
+      <div style={{ background: '#1e1b4b', borderBottom: '3px solid #f59e0b', padding: '0.875rem 1.5rem', textAlign: 'center', fontSize: '0.875rem' }}>
+        <strong style={{ color: '#f59e0b' }}>This directory is paused for editorial enrichment.</strong>{' '}
+        Visit our active sites:{' '}
+        <a href="https://soakusa.net" style={{ color: '#93c5fd', textDecoration: 'underline' }}>soakusa.net</a>
+        {' | '}
+        <a href="https://publicboatramps.com" style={{ color: '#93c5fd', textDecoration: 'underline' }}>publicboatramps.com</a>
+        {' | '}
+        <a href="https://fibertools.app" style={{ color: '#93c5fd', textDecoration: 'underline' }}>fibertools.app</a>
+      </div>
+
       {/* Hero */}
       <section style={{ position: 'relative', background: 'linear-gradient(155deg, var(--forest) 0%, #0a2d1e 40%, #0b3d4f 100%)', overflow: 'hidden', padding: '7rem 1.5rem 8rem' }}>
         <div aria-hidden style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(168,230,192,0.04) 1px, transparent 1px)', backgroundSize: '28px 28px', pointerEvents: 'none' }} />
