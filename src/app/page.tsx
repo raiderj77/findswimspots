@@ -43,23 +43,23 @@ export default function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context':'https://schema.org','@type':'WebSite',url:'https://findswimspots.com',
-        name:'Find Swim Spots',dateModified:'2026-04-07',potentialAction:{'@type':'SearchAction',target:{'@type':'EntryPoint',urlTemplate:'https://findswimspots.com/search?q={search_term_string}'},'query-input':'required name=search_term_string'},
+        name:'Find Swim Spots',dateModified:new Date().toISOString().substring(0,10),potentialAction:{'@type':'SearchAction',target:{'@type':'EntryPoint',urlTemplate:'https://findswimspots.com/search?q={search_term_string}'},'query-input':'required name=search_term_string'},
       }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context':'https://schema.org','@type':'Organization',
         name:'Find Swim Spots',url:'https://findswimspots.com',
         description:'Directory of public swimming spots across the United States',
-        dateModified:'2026-04-07',
+        dateModified:new Date().toISOString().substring(0,10),
       }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context':'https://schema.org','@type':'LocalBusiness',
         name:'Find Swim Spots Directory',url:'https://findswimspots.com',
         description:'Find public swimming holes, lakes, rivers, and beaches near you',
-        areaServed:'United States',dateModified:'2026-04-07',
+        areaServed:'United States',dateModified:new Date().toISOString().substring(0,10),
       }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context':'https://schema.org','@type':'FAQPage',
-        dateModified:'2026-04-07',
+        dateModified:new Date().toISOString().substring(0,10),
         mainEntity:[
           {'@type':'Question',name:'How do I find a public swimming spot near me?',acceptedAnswer:{'@type':'Answer',text:'Use the Find Swim Spots directory to search by state, county, or city. Each listing includes the location type (lake, river, swimming hole, or beach), water quality information, parking availability, and amenities like restrooms and lifeguards.'}},
           {'@type':'Question',name:'Are public swimming spots free to use?',acceptedAnswer:{'@type':'Answer',text:'Many natural swimming spots are free, but some state parks and managed recreation areas charge a day-use fee ranging from $5 to $15 per vehicle. Always check the individual listing for current fee information before visiting.'}},
