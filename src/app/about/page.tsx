@@ -39,7 +39,7 @@ export default function AboutPage() {
         </p>
         <ul style={{ lineHeight: 1.8 }}>
           <li>Always check current water and weather conditions before visiting</li>
-          <li>Never swim alone—always bring a buddy or group</li>
+          <li>Never swim alone, always bring a buddy or group</li>
           <li>Verify water quality with local environmental agencies</li>
           <li>Respect all posted warnings and closures</li>
           <li>Be aware of currents, depth, and water temperature</li>

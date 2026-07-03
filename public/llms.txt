@@ -1,4 +1,4 @@
-# Find Swim Spots — Swimming Holes Directory
+# Find Swim Spots, Swimming Holes Directory
 
 > A free directory of swimming holes, natural pools, creeks, and water spots across the United States with safety info and local tips.
 

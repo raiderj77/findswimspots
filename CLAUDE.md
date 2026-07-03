@@ -1,4 +1,4 @@
-﻿# Find Swim Spots — CLAUDE.md
+﻿# Find Swim Spots, CLAUDE.md
 
 > Source of truth for Claude Code on this project. Last updated: 2026-04-30
 
@@ -8,7 +8,7 @@
 - **Domain**: findswimspots.com
 - **Purpose**: Location finder for public swimming spots (lakes, rivers, ocean beaches, public pools) across the United States
 - **Type**: utility-site (ad-supported location directory)
-- **Compliance Tier**: Standard — SAFETY NOTE: water safety content requires extra care
+- **Compliance Tier**: Standard, SAFETY NOTE: water safety content requires extra care
 
 ## Tech Stack
 
@@ -23,7 +23,7 @@
 
 - SSR/SSG required
 - Each swim spot page: location name, address/coordinates, water type, depth info if available, lifeguard status, accessibility, parking
-- CRITICAL: Water quality and safety data changes — include "check local conditions before visiting" disclaimer on every page
+- CRITICAL: Water quality and safety data changes, include "check local conditions before visiting" disclaimer on every page
 
 ## 3. Core Web Vitals
 
@@ -31,7 +31,7 @@
 
 ## 4. E-E-A-T
 
-- Attribution: "Built by an experienced web developer" — no personal name
+- Attribution: "Built by an experienced web developer", no personal name
 - IMPORTANT: Include water safety disclaimer on every swim spot page
 - Never present this site as an official water safety resource
 
@@ -79,4 +79,4 @@ Vercel | main | `npm run build` | Env: INDEXNOW_API_KEY
 
 ## Warnings
 
-Standard Empire warnings + NEVER present water conditions as verified/current without official data source. Always disclaim "verify local conditions before visiting." Water safety information should never be presented as authoritative — users are responsible for their own safety decisions.
+Standard Empire warnings + NEVER present water conditions as verified/current without official data source. Always disclaim "verify local conditions before visiting." Water safety information should never be presented as authoritative, users are responsible for their own safety decisions.

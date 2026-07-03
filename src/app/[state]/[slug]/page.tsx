@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
   const location = locations.find((l) => l.slug === slug);
   const stateName = getStateName(state);
   return {
-    title: `${location?.name ?? 'Swim Spot'} — Natural Swimming in ${stateName}`,
+    title: `${location?.name ?? 'Swim Spot'}, Natural Swimming in ${stateName}`,
     description: location?.description ?? `Natural swimming spot in ${stateName}. Find GPS coordinates, amenities, and safety info.`,
     alternates: { canonical: `https://findswimspots.com/${state}/${slug}` },
     openGraph: { title: `${location?.name} | Find Swim Spots`, description: location?.description, url: `https://findswimspots.com/${state}/${slug}` },
@@ -112,7 +112,7 @@ export default async function SpotPage({ params }: { params: Promise<{ state: st
       <section style={{ padding: '4rem 1.5rem' }}>
         <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '3rem', alignItems: 'start' }}>
 
-          {/* Left — details */}
+          {/* Left, details */}
           <div>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: 'var(--forest)', marginBottom: '1rem' }}>About This Spot</h2>
             <p style={{ lineHeight: 1.9, marginBottom: '2.5rem', color: 'var(--text)', fontSize: '1.025rem' }}>
@@ -156,7 +156,7 @@ export default async function SpotPage({ params }: { params: Promise<{ state: st
             <div style={{ background: 'rgba(45,110,74,0.06)', border: '1px solid rgba(45,110,74,0.2)', borderRadius: 'var(--radius-sm)', padding: '1.25rem 1.5rem', marginBottom: '2rem' }}>
               <h3 style={{ fontFamily: 'var(--font-display)', color: 'var(--forest)', fontSize: '1rem', marginBottom: '0.6rem' }}>🛟 Safety Reminder</h3>
               <p style={{ fontSize: '0.875rem', color: '#556', lineHeight: 1.75 }}>
-                Wild swimming carries risks. Always check water quality and current conditions before entering. Never swim alone, be aware of underwater hazards, and know your limits. Conditions can change seasonally — verify access before visiting.
+                Wild swimming carries risks. Always check water quality and current conditions before entering. Never swim alone, be aware of underwater hazards, and know your limits. Conditions can change seasonally, verify access before visiting.
               </p>
             </div>
 
@@ -167,7 +167,7 @@ export default async function SpotPage({ params }: { params: Promise<{ state: st
             </div>
           </div>
 
-          {/* Right — info panel */}
+          {/* Right, info panel */}
           <aside>
             <div style={{ background: 'var(--white)', borderRadius: 'var(--radius)', boxShadow: 'var(--shadow-card)', overflow: 'hidden', border: '1px solid rgba(45,110,74,0.15)', position: 'sticky', top: '90px' }}>
               <div style={{ background: 'var(--forest)', padding: '1.25rem 1.5rem' }}>
