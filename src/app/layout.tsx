@@ -84,17 +84,22 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 <p style={{ fontFamily: 'var(--font-display)', color: '#a8e6c0', fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.75rem' }}>🏊 Find Swim Spots</p>
                 <p style={{ color: '#6a9a78', fontSize: '0.875rem', lineHeight: 1.7 }}>Free directory of swimming holes, natural pools, and water spots across the United States. Always check conditions before visiting.</p>
               </div>
-              <div>
-                <h4 style={{ color: '#a8e6c0', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1rem', fontFamily: 'var(--font-display)' }}>Directory Sites</h4>
-                <ul style={{ listStyle: 'none' }}>
-                  {directorySites.map((s) => <li key={s.href} style={{ marginBottom: '0.4rem' }}><a href={s.href} target="_blank" rel="noopener noreferrer" style={{ color: '#6a9a78', fontSize: '0.875rem', textDecoration: 'none' }}>{s.name}</a></li>)}
-                </ul>
-              </div>
-              <div>
-                <h4 style={{ color: '#a8e6c0', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1rem', fontFamily: 'var(--font-display)' }}>Tools</h4>
-                <ul style={{ listStyle: 'none' }}>
-                  {toolSites.map((s) => <li key={s.href} style={{ marginBottom: '0.4rem' }}><a href={s.href} target="_blank" rel="noopener noreferrer" style={{ color: '#6a9a78', fontSize: '0.875rem', textDecoration: 'none' }}>{s.name}</a></li>)}
-                </ul>
+              <div style={{ gridColumn: 'span 2' }}>
+                <p style={{ fontFamily: 'var(--font-display)', color: '#a8e6c0', fontWeight: 700, fontSize: '0.9rem', marginBottom: '1.5rem', opacity: 0.9 }}>More from our network</p>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+                  <div>
+                    <h4 style={{ color: '#a8e6c0', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1rem', fontFamily: 'var(--font-display)' }}>Directory Sites</h4>
+                    <ul style={{ listStyle: 'none' }}>
+                      {directorySites.map((s) => <li key={s.href} style={{ marginBottom: '0.4rem' }}><a href={s.href} target="_blank" rel="noopener noreferrer" style={{ color: '#6a9a78', fontSize: '0.875rem', textDecoration: 'none' }}>{s.name}</a></li>)}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 style={{ color: '#a8e6c0', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1rem', fontFamily: 'var(--font-display)' }}>Tools</h4>
+                    <ul style={{ listStyle: 'none' }}>
+                      {toolSites.map((s) => <li key={s.href} style={{ marginBottom: '0.4rem' }}><a href={s.href} target="_blank" rel="noopener noreferrer" style={{ color: '#6a9a78', fontSize: '0.875rem', textDecoration: 'none' }}>{s.name}</a></li>)}
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
