@@ -13,9 +13,9 @@ export function generateMetadata(): Metadata {
     alternates: { canonical: 'https://findswimspots.com' },
     verification: { google: 'mYJQ1s35nwTJyI3LV6j-FwtgbKUNIIUg1t6xndmetPU' },
     robots: {
-      index: false,
+      index: true,
       follow: true,
-      googleBot: { index: false, follow: true },
+      googleBot: { index: true, follow: true },
     },
   };
 }

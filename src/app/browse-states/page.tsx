@@ -5,6 +5,7 @@ export function generateMetadata(): Metadata {
   return {
     title: 'Browse Swimming Holes by State',
     description: 'Browse our directory of swimming holes and natural water spots by state.',
+    robots: { index: false, follow: true },
   };
 }
 
