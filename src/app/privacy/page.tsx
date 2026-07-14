@@ -12,7 +12,7 @@ export default function PrivacyPage() {
     <article style={{ paddingTop: '2rem', paddingBottom: '2rem', maxWidth: '900px', margin: '0 auto' }}>
       <h1 style={{ fontSize: '2rem', color: '#0056b3', marginBottom: '1.5rem' }}>Privacy Policy</h1>
 
-      <p style={{ color: '#666', fontStyle: 'italic' }}>Last updated: April 19, 2026</p>
+      <p style={{ color: '#666', fontStyle: 'italic' }}>Last updated: July 13, 2026</p>
 
       <section style={{ marginBottom: '2rem' }}>
         <h2 style={{ fontSize: '1.25rem', color: '#0056b3' }}>Introduction</h2>
@@ -30,13 +30,13 @@ export default function PrivacyPage() {
         <h3 style={{ fontSize: '1.1rem', color: '#555' }}>Types of Data Collected</h3>
         <ul>
           <li>
-            <strong>Personal Data:</strong> While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you. This may include, but is not limited to: Email address, Cookies and Usage Data.
+            <strong>Contact Data:</strong> If you contact us, we may process your email address and the information in your message to respond.
           </li>
           <li>
-            <strong>Usage Data:</strong> We may also collect information on how the Service is accessed and used ("Usage Data"). This may include information such as your computer's Internet Protocol address (IP address), browser type, browser version, the pages you visit, the time and date of your visit, the time spent on those pages, and other diagnostic data.
+            <strong>Service and Security Data:</strong> Hosting and security providers may process request metadata such as IP address, browser type, requested page, and timestamp to deliver and protect the Service.
           </li>
           <li>
-            <strong>Cookies and Tracking Data:</strong> We use cookies and similar tracking technologies to track activity on our Service and hold certain information.
+            <strong>Optional Tracking:</strong> Google AdSense, Google Analytics, and Microsoft Clarity are not currently enabled.
           </li>
         </ul>
       </section>
@@ -47,10 +47,7 @@ export default function PrivacyPage() {
         <ul>
           <li>To provide and maintain the Service</li>
           <li>To notify you about changes to our Service</li>
-          <li>To allow you to participate in interactive features of our Service when you choose to do so</li>
           <li>To provide customer support</li>
-          <li>To gather analysis or valuable information so that we can improve the Service</li>
-          <li>To monitor the usage of the Service</li>
           <li>To detect, prevent and address technical issues</li>
         </ul>
       </section>
@@ -95,7 +92,7 @@ export default function PrivacyPage() {
           <li><strong>Right to Data Portability:</strong> Request a copy of your personal data in a portable format.</li>
         </ol>
         <p style={{ marginTop: '1rem' }}>
-          <strong>Global Privacy Control (GPC) Honor:</strong> Find Swim Spots respects and honors <strong>Global Privacy Control (GPC)</strong> signals from your browser or device. When GPC is enabled, we automatically treat it as a universal opt-out request and disable advertising tracking, analytics, and personalization.
+          <strong>Global Privacy Control (GPC):</strong> The Service does not currently sell personal data or run targeted advertising. If processing subject to an opt-out is introduced later, we will honor applicable GPC signals.
         </p>
         <p style={{ marginTop: '0.5rem' }}>
           <strong>Data Sales:</strong> Find Swim Spots does <strong>not sell</strong> your personal data.
@@ -109,37 +106,22 @@ export default function PrivacyPage() {
       </section>
 
       <section style={{ marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '1.25rem', color: '#0056b3' }}>AdSense and Advertising</h2>
+        <h2 style={{ fontSize: '1.25rem', color: '#0056b3' }}>Advertising and Analytics Status</h2>
         <p>
-          We use Google AdSense to display advertisements on our website. Google's use of advertising cookies enables it and its partners to serve ads to our users based on their visits to this and other websites on the Internet.
+          Google AdSense, Google Analytics, and Microsoft Clarity are not currently enabled. The Service does not load their scripts or set their advertising or analytics cookies.
         </p>
         <p>
-          We work with third-party advertising partners, including Google, who may use cookies to serve ads based on your prior visits to this website or other websites.
+          A publisher identifier may remain in ads.txt or public metadata solely for ownership verification. It does not itself place cookies or serve ads.
         </p>
         <p>
-          Google AdSense may collect and use the following information:
-        </p>
-        <ul>
-          <li>Cookies</li>
-          <li>Information about user behavior and interests</li>
-          <li>IP addresses</li>
-          <li>Browser and device information</li>
-        </ul>
-        <p>
-          For more information about Google's privacy practices, please visit the Google Privacy & Terms page: <a href="https://policies.google.com/privacy" style={{ color: '#0056b3' }}>https://policies.google.com/privacy</a>
-        </p>
-        <p>
-          You may opt out of personalized advertising by visiting{' '}
-          <a href="https://ads.google.com/settings" rel="nofollow" style={{ color: '#0056b3' }}>Google Ad Settings</a>
-          {' '}or the{' '}
-          <a href="https://optout.aboutads.info" rel="nofollow" style={{ color: '#0056b3' }}>Digital Advertising Alliance opt-out page</a>.
+          If optional advertising or analytics is enabled later, this policy and any required consent and opt-out controls will be updated first.
         </p>
       </section>
 
       <section style={{ marginBottom: '2rem' }}>
         <h2 style={{ fontSize: '1.25rem', color: '#0056b3' }}>Children's Privacy</h2>
         <p>
-          Our Service does not address anyone under the age of 18 ("Children"). We do not knowingly collect personally identifiable information from anyone under 18. If you are a parent or guardian and you are aware that your Child has provided us with Personal Data, please contact us. If we discover that a Child has provided us with Personal Data, we will delete such information and terminate the Child's account immediately.
+          Our Service is a general-audience directory and does not offer user accounts. We do not knowingly solicit personal information from children. If you believe a child sent us personal information, please contact us so we can address it.
         </p>
       </section>
 
