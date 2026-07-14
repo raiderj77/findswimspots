@@ -36,6 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
     title: `Swimming Holes in ${stateName}`,
     description: `Find natural swimming holes, pools, and wild swim spots in ${stateName}. Browse free public swimming locations with GPS coordinates.`,
     alternates: { canonical: `https://findswimspots.com/${state}` },
+    robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
   };
 }
 
