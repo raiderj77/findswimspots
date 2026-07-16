@@ -3,18 +3,19 @@ import { STATES } from '../states';
 
 export function generateMetadata(): Metadata {
   return {
-    title: 'Browse Swimming Holes by State',
-    description: 'Browse our directory of swimming holes and natural water spots by state.',
-    robots: { index: false, follow: true },
+    title: 'Browse Imported Water-Location Records by Region',
+    description: 'Browse imported coordinate records by represented region while the directory is rebuilt with current primary sources.',
+    robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
   };
 }
 
 export default function BrowseStatesPage() {
   return (
-    <article style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
-      <h1 style={{ fontSize: '2rem', color: '#0056b3', marginBottom: '1rem' }}>Browse by State</h1>
-      <p style={{ fontSize: '1.05rem', color: '#666', marginBottom: '2rem' }}>
-        Select a state to browse all swimming holes and natural water spots in that area.
+    <article className="content-page">
+      <p className="section-label">Imported directory</p>
+      <h1>Browse records by region</h1>
+      <p className="lead">
+        These routes contain imported names and coordinates. They do not establish public access, swimming permission, or current safety. Verify every record with the responsible operator or agency.
       </p>
 
       <div
@@ -34,8 +35,8 @@ export default function BrowseStatesPage() {
               borderRadius: '8px',
               textAlign: 'center',
               textDecoration: 'none',
-              color: 'white',
-              backgroundColor: '#0056b3',
+              color: 'var(--forest)',
+              backgroundColor: 'white',
               fontWeight: 'bold',
               fontSize: '1rem',
               transition: 'all 0.2s ease',

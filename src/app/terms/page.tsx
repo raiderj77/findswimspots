@@ -9,7 +9,7 @@ export function generateMetadata(): Metadata {
 
 export default function TermsPage() {
   return (
-    <article style={{ paddingTop: '2rem', paddingBottom: '2rem', maxWidth: '900px', margin: '0 auto' }}>
+    <article className="content-page">
       <h1 style={{ fontSize: '2rem', color: '#0056b3', marginBottom: '1.5rem' }}>Terms of Service</h1>
 
       <p style={{ color: '#666', fontStyle: 'italic' }}>Last updated: April 4, 2026</p>
