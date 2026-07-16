@@ -1,97 +1,46 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import locations from '@/data/locations.json';
 
-export function generateMetadata(): Metadata {
-  return {
-    title: 'About',
-    description: 'Learn about Find Swim Spots and our mission to help people discover safe natural swimming locations.',
-  };
-}
+export const metadata: Metadata = {
+  title: 'About the Find Swim Spots Rebuild',
+  description: 'Learn what the imported Find Swim Spots records contain, what they do not establish, and the standard for future reviewed profiles.',
+};
 
 export default function AboutPage() {
+  const withCity = locations.filter((location) => location.city).length;
+
   return (
-    <article style={{ paddingTop: '2rem', paddingBottom: '2rem', maxWidth: '900px', margin: '0 auto' }}>
-      <h1 style={{ fontSize: '2rem', color: '#0056b3', marginBottom: '1.5rem' }}>About Find Swim Spots</h1>
+    <article className="content-page">
+      <p className="section-label">About this rebuild</p>
+      <h1>Source transparency before recommendations</h1>
+      <p className="lead">Find Swim Spots is being rebuilt from an imported coordinate directory into a smaller, source-backed resource. The current records are useful only as research leads.</p>
 
-      <section style={{ marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '1.25rem', color: '#0056b3' }}>Our Mission</h2>
-        <p style={{ fontSize: '1.05rem', lineHeight: 1.8 }}>
-          Find Swim Spots exists to help people discover and safely enjoy swimming holes, natural pools, creeks, and scenic water spots across the United States. We believe that everyone should have access to high-quality information about natural swimming locations, from hidden mountain pools to riverside swimming holes.
-        </p>
-      </section>
-
-      <section style={{ marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '1.25rem', color: '#0056b3' }}>What We Do</h2>
-        <p>
-          We curate and maintain a comprehensive directory of swimming holes and natural water spots across all 50 US states. Our directory includes:
-        </p>
-        <ul style={{ lineHeight: 1.8 }}>
-          <li><strong>Location Details:</strong> Name, address, coordinates, and detailed descriptions of each swimming hole</li>
-          <li><strong>Amenities Information:</strong> What facilities and features are available at each location</li>
-          <li><strong>Safety Guidelines:</strong> Important information about water conditions, access, and proper safety practices</li>
-          <li><strong>Local Tips:</strong> Insights from people familiar with each location</li>
+      <section>
+        <h2>What the repository contains</h2>
+        <ul>
+          <li>{locations.length.toLocaleString()} names with latitude and longitude</li>
+          <li>{withCity} records with a city field and {locations.length - withCity} without one</li>
+          <li>{new Set(locations.map((location) => location.state)).size} region labels</li>
+          <li>The same two generic labels, <code>Swimming</code> and <code>Public access</code>, on every record</li>
         </ul>
       </section>
 
-      <section style={{ marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '1.25rem', color: '#0056b3' }}>Safety First Philosophy</h2>
-        <p>
-          We believe that safety is paramount when swimming in natural water bodies. Every page includes detailed safety information and reminders about the inherent risks of natural water swimming. We encourage users to:
-        </p>
-        <ul style={{ lineHeight: 1.8 }}>
-          <li>Always check current water and weather conditions before visiting</li>
-          <li>Never swim alone, always bring a buddy or group</li>
-          <li>Verify water quality with local environmental agencies</li>
-          <li>Respect all posted warnings and closures</li>
-          <li>Be aware of currents, depth, and water temperature</li>
-          <li>Wear appropriate safety gear when necessary</li>
-        </ul>
+      <section>
+        <h2>What the repository does not contain</h2>
+        <p>It does not record the original source, collection date, land manager, operator website, legal-access authority, swimming permission, water type, water quality, depth, currents, temperature, closures, fees, parking, accessibility, lifeguard status, or review date.</p>
+        <p>For that reason, the generic labels and generated descriptions are not presented as current facts. A coordinate is not proof that an entrance exists, that the public may enter, that swimming is permitted, or that conditions are safe.</p>
       </section>
 
-      <section style={{ marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '1.25rem', color: '#0056b3' }}>How We Select Locations</h2>
-        <p>
-          Swimming holes are included in our directory based on:
-        </p>
-        <ul style={{ lineHeight: 1.8 }}>
-          <li>Public accessibility and legal access rights</li>
-          <li>General availability of information about conditions and amenities</li>
-          <li>Geographic distribution across the United States</li>
-          <li>Variety of types (waterfalls, mountain pools, rivers, etc.)</li>
-        </ul>
-        <p>
-          All locations in our directory are public or legally accessible. We do not include private property or restricted areas.
-        </p>
+      <section>
+        <h2>Publication standard</h2>
+        <p>A future reviewed profile must identify the responsible operator or land manager, cite current primary sources, include a review date, and clearly distinguish ongoing facts from conditions that must be checked immediately before a visit.</p>
+        <p>Water quality, weather, currents, closures, and posted rules can change. This site will not label a location safe, and it is not an emergency, weather, water-quality, or public-safety authority.</p>
       </section>
 
-      <section style={{ marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '1.25rem', color: '#0056b3' }}>Our Commitment</h2>
-        <p>
-          We are committed to:
-        </p>
-        <ul style={{ lineHeight: 1.8 }}>
-          <li><strong>Accuracy:</strong> Providing accurate, up-to-date information about swimming locations</li>
-          <li><strong>Safety:</strong> Emphasizing safety practices and warning users about potential risks</li>
-          <li><strong>Accessibility:</strong> Making our directory easy to use and navigate</li>
-          <li><strong>Respect:</strong> Respecting local communities, the environment, and access rights</li>
-          <li><strong>Transparency:</strong> Being clear about our sources and methodology</li>
-        </ul>
-      </section>
-
-      <section style={{ marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '1.25rem', color: '#0056b3' }}>Legal Notice</h2>
-        <p>
-          The information on Find Swim Spots is provided for informational purposes only. We do not guarantee the accuracy or completeness of information about any location. Users are entirely responsible for verifying access rights, checking water conditions, and making their own safety decisions.
-        </p>
-        <p>
-          Swimming in natural water bodies carries inherent risks of injury or death. Users assume all risk when visiting any location listed on this directory.
-        </p>
-      </section>
-
-      <section style={{ marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '1.25rem', color: '#0056b3' }}>Contact Us</h2>
-        <p>
-          Have questions or suggestions? We'd like to hear from you! Please contact us at <strong>contact@findswimspots.com</strong>.
-        </p>
+      <section>
+        <h2>Corrections</h2>
+        <p>If a record is inaccurate, restricted, private, unsafe to expose, or not a swimming location, please use the <Link href="/contact">contact instructions</Link>. Include the record URL and a current official source when possible.</p>
       </section>
     </article>
   );

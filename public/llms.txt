@@ -1,13 +1,31 @@
-# Find Swim Spots, Swimming Holes Directory
+# Find Swim Spots
 
-> A free directory of swimming holes, natural pools, creeks, and water spots across the United States with safety info and local tips.
+> An imported water-location directory undergoing source and safety review.
 
-## Browse
-- [Home](https://findswimspots.com): Search all swimming holes
-- [Texas](https://findswimspots.com/texas): Swimming holes in Texas
-- [California](https://findswimspots.com/california): Swimming holes in California
+## Current dataset
 
-## About
-- [About Us](https://findswimspots.com/about): About this directory
-- [Privacy Policy](https://findswimspots.com/privacy): How we handle data
-- [Contact](https://findswimspots.com/contact): Get in touch
+- 4,024 records contain names and coordinates.
+- 48 records contain a city; 3,976 do not.
+- The data contains 52 region labels.
+- Every record has the same generic `Swimming` and `Public access` labels.
+- The repository does not record the original source, collection date, operator, operator website, access authority, swimming permission, water quality, conditions, fees, lifeguard status, or review date.
+- A coordinate is not proof of legal access, permission to swim, or safe conditions.
+
+## Indexing and monetization
+
+- The homepage and trust pages may be indexed.
+- Browse, region, and record routes remain noindex while the imported data is rebuilt.
+- Bulk imported pages are not monetization-ready.
+- Advertising, analytics, affiliate links, and newsletter capture are not active.
+
+## Publication standard
+
+A future reviewed profile must identify the responsible operator or land manager, cite current primary sources, record what was reviewed and when, and distinguish stable sourced facts from conditions that must be checked immediately before a visit.
+
+## Pages
+
+- [Home](https://findswimspots.com)
+- [About the rebuild](https://findswimspots.com/about)
+- [Corrections and source submissions](https://findswimspots.com/contact)
+- [Privacy Policy](https://findswimspots.com/privacy)
+- [Terms](https://findswimspots.com/terms)

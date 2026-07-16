@@ -9,7 +9,7 @@ export function generateMetadata(): Metadata {
 
 export default function PrivacyPage() {
   return (
-    <article style={{ paddingTop: '2rem', paddingBottom: '2rem', maxWidth: '900px', margin: '0 auto' }}>
+    <article className="content-page">
       <h1 style={{ fontSize: '2rem', color: '#0056b3', marginBottom: '1.5rem' }}>Privacy Policy</h1>
 
       <p style={{ color: '#666', fontStyle: 'italic' }}>Last updated: July 13, 2026</p>
@@ -82,7 +82,7 @@ export default function PrivacyPage() {
       <section style={{ marginBottom: '2rem' }}>
         <h2 style={{ fontSize: '1.25rem', color: '#0056b3' }}>MODPA Privacy Rights (Maryland Residents)</h2>
         <p>
-          Find Swim Spots complies with the <strong>Maryland Online Data Privacy Act (MODPA)</strong>, effective April 1, 2026. If you are a Maryland resident, you have the following consumer rights:
+          Where the Maryland Online Data Privacy Act (MODPA) applies, Maryland residents may have the following consumer rights:
         </p>
         <ol style={{ marginLeft: '1.5rem' }}>
           <li><strong>Right to Access:</strong> Request what personal data we collect and how we use it.</li>
@@ -98,7 +98,7 @@ export default function PrivacyPage() {
           <strong>Data Sales:</strong> Find Swim Spots does <strong>not sell</strong> your personal data.
         </p>
         <p style={{ marginTop: '0.5rem' }}>
-          <strong>Response Timeline:</strong> We will respond to consumer rights requests within <strong>45 days</strong> of receipt.
+          <strong>Response Timeline:</strong> Applicable consumer privacy requests will be handled within the period required by the relevant law.
         </p>
         <p style={{ marginTop: '0.5rem' }}>
           To submit a MODPA consumer rights request, contact us at <strong>privacy@findswimspots.com</strong> with your name, email, and the specific right you wish to exercise.
