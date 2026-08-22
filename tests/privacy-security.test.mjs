@@ -12,7 +12,8 @@ const policy = read("next.config.ts");
 
 test("Creator footer link is removed without changing unrelated network links", () => {
   assert.doesNotMatch(layout, /creatorrevenuecalculator|Creator Revenue Calculator/i);
-  assert.match(layout, /\{ name: 'Fiber Tools', href: 'https:\/\/fibertools\.app' \}/);
+  assert.doesNotMatch(layout, /https:\/\/(?:www\.)?fibertools\.app/i);
+  assert.match(layout, /\{ name: 'Mind Check Tools', href: 'https:\/\/mindchecktools\.com' \}/);
   assert.match(layout, /\{ name: 'Flip My Case', href: 'https:\/\/flipmycase\.com' \}/);
   assert.equal(existsSync(join(root, "src/components/CreatorRevenueLink.tsx")), false);
   assert.equal(existsSync(join(root, "src/lib/creator-link-rel.mjs")), false);
