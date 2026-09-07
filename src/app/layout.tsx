@@ -1,10 +1,8 @@
 import type { Metadata } from 'next';
 import { Raleway, Merriweather } from 'next/font/google';
 import './globals.css';
-
 const raleway = Raleway({ subsets: ['latin'], variable: '--font-display', display: 'swap', weight: ['400','600','700','800'] });
 const merriweather = Merriweather({ subsets: ['latin'], variable: '--font-body', display: 'swap', weight: ['300','400','700'] });
-
 export function generateMetadata(): Metadata {
   return {
     title: { template: '%s | Find Swim Spots', default: 'Find Swim Spots - Imported Record Rebuild' },
@@ -19,20 +17,6 @@ export function generateMetadata(): Metadata {
     },
   };
 }
-
-const toolSites = [
-  { name: 'Fiber Tools', href: 'https://fibertools.app' },
-  { name: 'Flip My Case', href: 'https://flipmycase.com' },
-  { name: 'Contract Extract', href: 'https://contractextract.com' }, { name: 'Medical Bill Reader', href: 'https://medicalbillreader.com' },
-  { name: 'Tax Break Tools', href: 'https://taxbreaktools.com' }, { name: '524 Tracker', href: 'https://524tracker.com' },
-];
-const directorySites = [
-  { name: 'Public Boat Ramps', href: 'https://publicboatramps.com' }, { name: 'Craft Distillery Finder', href: 'https://craftdistilleryfinder.com' },
-  { name: 'Drive-In Tonight', href: 'https://driveintonight.com' }, { name: 'All Skate Parks', href: 'https://allskateparks.com' },
-  { name: 'Rockhounding Finder', href: 'https://rockhoundingfinder.com' }, { name: 'Nearby Escape Rooms', href: 'https://nearbyescaperooms.com' },
-  { name: 'All Skating Rinks', href: 'https://allskatingrinks.com' }, { name: 'Soak USA', href: 'https://soakusa.net' },
-];
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${raleway.variable} ${merriweather.variable}`}>
@@ -55,36 +39,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </nav>
           </div>
         </header>
-
         <main id="main-content" style={{ minHeight: 'calc(100vh - 340px)' }}>{children}</main>
-
         <footer style={{ background: 'var(--forest)', borderTop: '3px solid var(--forest-mid)', marginTop: '5rem', padding: '3rem 0 2rem' }}>
           <div className="container">
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem', marginBottom: '2.5rem' }}>
               <div>
                 <p style={{ fontFamily: 'var(--font-display)', color: '#a8e6c0', fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.75rem' }}>🏊 Find Swim Spots</p>
                 <p style={{ color: '#9cc8a8', fontSize: '0.875rem', lineHeight: 1.7 }}>Imported coordinate records undergoing source and safety review. Confirm access, swimming permission, advisories, and conditions with current local authorities.</p>
-              </div>
-              <div style={{ gridColumn: 'span 2' }}>
-                <p style={{ fontFamily: 'var(--font-display)', color: '#a8e6c0', fontWeight: 700, fontSize: '0.9rem', marginBottom: '1.5rem', opacity: 0.9 }}>More from our network</p>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-                  <div>
-                    <h4 style={{ color: '#a8e6c0', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1rem', fontFamily: 'var(--font-display)' }}>Directory Sites</h4>
-                    <ul style={{ listStyle: 'none' }}>
-                      {directorySites.map((s) => <li key={s.href} style={{ marginBottom: '0.4rem' }}><a href={s.href} target="_blank" rel="noopener noreferrer" style={{ color: '#6a9a78', fontSize: '0.875rem', textDecoration: 'none' }}>{s.name}</a></li>)}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 style={{ color: '#a8e6c0', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1rem', fontFamily: 'var(--font-display)' }}>Tools</h4>
-                    <ul style={{ listStyle: 'none' }}>
-                      {toolSites.map((s) => (
-                        <li key={s.href} style={{ marginBottom: '0.4rem' }}>
-                          <a href={s.href} target="_blank" rel="noopener noreferrer" style={{ color: '#6a9a78', fontSize: '0.875rem', textDecoration: 'none' }}>{s.name}</a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
               </div>
             </div>
             <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
